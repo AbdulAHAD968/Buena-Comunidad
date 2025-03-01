@@ -42,7 +42,7 @@ We welcome contributions! Here’s how you can help:
 1. **Fork the Repository**: Click the "Fork" button at the top right of this page.
 2. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/Buena-Comunidad.git
+   git clone https://github.com/AbdulAHAD968/Buena-Comunidad.git
 
 ---
 
