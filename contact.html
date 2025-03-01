@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Bunea Communidad</title>
+
+
+    <!-- TOGGLE BUTTON STYLING -->
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0)), url('./contact-photo/night-contact.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            background: #0E3178;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            transition: background 0.3s;
+        }
+
+        .sidebar-toggle:hover {
+            background: #34A853;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -60px;
+            top: 75px;
+            width: 60px;
+            height: 37vh;
+            background: linear-gradient(180deg, #0E3178, #34A853, #ffbf00);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1000;
+            border-radius: 20px;
+            transition: left 0.3s;
+            animation: hover-animation 2s infinite;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 15px 0;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-link .tooltip {
+            display: none;
+            position: absolute;
+            left: 100%;
+            margin-left: 10px;
+            background: rgba(255, 181, 33, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            font-size: 14px;
+            z-index: 1000;
+            animation: hover-animation 1s infinite;
+        }
+
+        .nav-link:hover .tooltip {
+            display: block;
+        }
+
+        .container {
+            margin-left: 80px;
+            padding: 40px;
+            width: calc(100% - 80px);
+            max-width: 850px;
+            text-align: left;
+        }
+
+        .contact_card {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(10deg,  #ffbf00, #0E3178, #34A853);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            transform: translateY(0%);
+            animation: hover-animation 3s infinite;
+        }
+
+        @keyframes hover-animation {
+            0% {
+                transform: translateY(0%);
+            }
+            50% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+                padding-top: 15px;
+                font-size: 14px;
+                margin: 10px 0;
+            }
+            .container1 {
+                margin-left: 60px;
+                padding: 13px;
+            }
+            .contact_card {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 40px;
+                font-size: 12px;
+                margin: 8px 0;
+            }
+            .container1 {
+                margin-left: 50px;
+                padding: 7px;
+            }
+            .contact_card {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+
+
+    <!-- CONTAINER + CARD STYLING -->
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+
+        /* Container Styling */
+        .container {
+            width: 90vw;
+            max-width: 1200px; /* Increased size for larger screens */
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            padding: 20px;
+        }
+
+        /* Contact Card Styling */
+        .contact_card {
+            position: relative;
+            width: 90%;
+            height: auto;
+            max-width: 1000px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            display: flex;
+            margin: 27px;
+            flex-direction: column;
+        }
+
+        .contact_card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Left Section Styling */
+        .left {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            align-items: stretch;
+        }
+
+        .left_left {
+            width: 50%;
+            padding-right: 20px;
+        }
+
+        .left_left h1 img {
+            width: 120px;
+            height: auto;
+        }
+
+        .left_left p {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #e9dfdf;
+            line-height: 1.6;
+        }
+
+        .left_right {
+            width: 50%;
+            padding-left: 20px;
+            border-left: 3px solid #ddd;
+        }
+
+        .heading h1 {
+            font-size: 28px;
+            color: #ffbf00;
+            margin-bottom: 15px;
+        }
+
+        .contact-divider {
+            border: 0;
+            height: 3px;
+            background: #ddd;
+            margin: 15px 0;
+        }
+
+        .contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #1aaaf1;
+            transition: all 0.3s ease-in-out;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .contact-item:hover {
+            color: #fff;
+            background: #0E3178;
+            box-shadow: 0px 8px 16px rgba(255, 174, 43, 0.714);
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        /* Bottom Section Styling */
+        .bottom {
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Media Queries for Responsiveness */
+
+        /* Mobile Screen (max-width: 400px) */
+        @media screen and (max-width: 400px) {
+            .container {
+                width: 100vw;
+                padding: 10px;
+            }
+
+            .contact_card {
+                padding: 20px;
+            }
+
+            .left {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .left_left, .left_right {
+                width: 100%;
+                padding: 0;
+                border-left: none;
+            }
+
+            .heading h1 {
+                font-size: 22px;
+            }
+        }
+
+        /* Tablet Screen (max-width: 800px) */
+        @media screen and (max-width: 800px) {
+            .container {
+                width: 95vw;
+                padding: 15px;
+            }
+
+            .contact_card {
+                padding: 30px;
+            }
+
+            .left {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .left_left, .left_right {
+                width: 100%;
+                padding: 0;
+                border-left: none;
+            }
+
+            .heading h1 {
+                font-size: 25px;
+            }
+        }
+
+        /* Larger Screens */
+        @media screen and (min-width: 1200px) {
+            .container {
+                max-width: 1400px; /* Increased size */
+            }
+
+            .contact_card {
+                max-width: 1100px;
+                padding: 50px;
+            }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+        }
+
+    </style>
+
+
+    <!-- FOOTER SECTION -->
+    <style>
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(10deg,  #ffbf00, #0E3178, #34A853);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            transform: translateY(0%);
+            animation: hover-animation 3s infinite;
+        }
+
+        @keyframes hover-animation {
+            0% {
+                transform: translateY(0%);
+            }
+            50% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+    </style>
+
+
+    <!-- FALLING STARS STYLE -->
+    <style>
+            
+        .falling-star {
+            position: absolute;
+            top: -5px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.9); /* Increased glow */
+            animation: fall 3s linear forwards;
+            z-index: 1000;
+        }
+
+
+        @keyframes fall {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+    </style>
+
+
+    <!-- CURSOR COLOR SELECTION CHANGE -->
+    <style>
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For webkit browsers (Chrome, Safari) */
+        ::-moz-selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For Firefox */
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+    </style>
+
+
+    <!-- SCROLL BAR DESIGN -->
+    <style>
+        /* addign a cursor */
+        * {
+            cursor:-moz-grabbing;
+        }
+
+        /* Styling the scroll wheel */
+        body {
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: rgb(50, 164, 58) rgb(200, 80, 192);
+            scroll-behavior: smooth;
+        }
+
+        /* Chrome, Edge, Safari */
+        ::-webkit-scrollbar{
+            cursor: pointer;
+            width: 15px; /* Thin scrollbar */
+            border-radius: 5px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            cursor:pointer;
+            background-color: rgb(66, 248, 78);
+            border-radius: 4px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgb(65, 88, 208);
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    
+</head>
+<body>
+
+    
+    <!-- Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="white"/>
+        </svg>
+    </button>
+
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+
+        <a href="index.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2l-12 9h3v11h6v-7h6v7h6v-11h3z" fill="white"/>
+            </svg>
+            <span class="tooltip">Home</span>
+        </a>
+
+        <a href="about.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/>
+            </svg>
+            <span class="tooltip">About</span>
+        </a>
+        
+        <a href="past.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M3 11h18v2h-18v-2zm0 4h12v2h-12v-2zm0-8h18v2h-18v-2zm14 8h4v2h-4v-2z" fill="white"/>
+            </svg>
+            <span class="tooltip">Past Experiences</span>
+        </a>
+
+        <a href="home.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10-10-4.48-10-10 4.48-10 10-10zm-1 14h2v2h-2v-2zm0-10h2v8h-2v-8z" fill="white"/>
+            </svg>
+            <span class="tooltip">SDG's</span>
+        </a>
+
+    </div>
+
+
+    <!-- CONTACT CARD -->
+    <div class="container">
+        <div class="contact_card">
+            <div class="left">
+                
+                <div class="left_left">
+                    <h1>
+                        <img src="./assets/zar-1.png" style="border-radius: 20px; width: 30% ; height:30%;">
+                    </h1>
+                    <p>
+                        Help us improve our documentation! If you have information about 
+                        an NGO that is not listed here, please email us with Subject:
+                        <em><u><strong>NGO Information Submission - [NGO Name].</strong></u></em>
+                    </p>
+                </div>
+                <div class="left_right">
+
+                    <div class="heading">
+                        <h1>𝐂𝐨𝐧𝐭𝐚𝐜𝐭 𝐔𝐬</h1>
+                    </div>
+                    
+                    <hr class="contact-divider">
+                    
+                    <div class="contacts">
+                        <a href="mailto:ahad06074@gmail.com" class="contact-item">
+                            <img src="./contact-photo/gmail.png" alt="Email Icon" class="contact-icon">
+                            <p>𝑨𝒃𝒅𝒖𝒍 𝑨𝒉𝒂𝒅</p>
+                        </a>
+                        <a href="mailto:ab.zarinc@gmail.com" class="contact-item">
+                            <img src="./contact-photo/gmail.png" alt="Email Icon" class="contact-icon">
+                            <p>𝑫𝒆𝒗. 𝑻𝒆𝒂𝒎</p>
+                        </a>
+                    </div>
+                
+                </div>
+            </div>
+            <!-- <hr style="width: 70%; height: 4px; background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);; border: none; border-radius: 5px; margin: 20px auto;"> -->
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        𝘽𝙚 𝙩𝙝𝙚 𝙘𝙝𝙖𝙣𝙜𝙚 𝙮𝙤𝙪 𝙬𝙖𝙣𝙩 𝙩𝙤 𝙨𝙚𝙚 𝙞𝙣 𝙩𝙝𝙚 𝙬𝙤𝙧𝙡𝙙.
+        <hr style="width: 70%; height: 4px; background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);; border: none; border-radius: 5px; margin: 10px auto;">
+    </div>
+
+
+
+    <!-- TOGGLE SECTION -->
+    <script>
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        // HANDLE INSIDE CLICK (P(E))
+        sidebarToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevents immediate closing when clicking the toggle button
+            sidebar.classList.toggle('active');
+        });
+
+        // HANDLE OUTSIDE CLICK ( 1 - P(E))
+        document.addEventListener('click', (event) => {
+            if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+
+
+    <!-- FALLING STAR ANIMATION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // ERROR HANDLING, IF IN CASE CONTAINER IS MISSING
+            const container = document.querySelector(".container");
+            if(!container){
+                console.error("Container not found!");
+                return;
+            }
+
+            function MAKE_STARS(){
+                const star = document.createElement("div");
+                star.classList.add("falling-star");
+
+                const size = Math.random() * 3 + 3;
+                const startPosX = Math.random() * window.innerWidth;
+                const duration = Math.random() * 3 + 6;
+
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${startPosX}px`;
+                star.style.animationDuration = `${duration}s`;
+
+                container.appendChild(star);
+                // console.log("Star created at X:", startPosX);
+
+                setTimeout(() => {
+                    star.remove();
+                }, duration * 2500);
+            }
+
+            function GEN_STARS() {
+                setInterval(MAKE_STARS, 200);
+            }
+
+            GEN_STARS();
+        });
+    </script>
+
+
+    <!-- STOP RIGHT CLICK. -->
+    <script>
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+
+    <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+                event.preventDefault();
+            }
+            if (event.key === "F12") {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || // Ctrl+Shift+I/J/C
+                (event.ctrlKey && event.key === "U") || // Ctrl+U
+                (event.key === "F12") // F12
+            ) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    <!-- FOR SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NGO Finder",
+            "url": "https://yourwebsite.com",
+            "description": "Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://yourwebsite.com/search?q={search_term}",
+                "query-input": "required name=search_term"
+            }
+        }
+    </script>
+
+
+</body>
+</html>  

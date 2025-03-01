@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Bunea Communidad</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- HEADER STYLING -->
+    <style>
+        
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+            position: sticky;
+            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            padding: 20px;
+            /* border-radius: 6px; */
+            z-index: 1000; /* issy sub se uper rkho bai */
+        }
+
+        /* Day-Night Toggle Button */
+        .theme-switch {
+            width: 110px;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 30px;
+            box-shadow: inset 0 0 5px 4px rgba(255, 255, 255, 1),
+                inset 0 0 20px 1px rgba(0, 0, 0, 0.488), 10px 20px 30px rgba(0, 0, 0, 0.096),
+                inset 0 0 0 3px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.4s;
+        }
+
+        /* 3-d hover animation */
+        .theme-switch:hover {
+            -webkit-transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+            transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+        }
+
+        /* Toggle Effect */
+        .theme-switch::before {
+            content: "";
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(130deg, #757272 10%, #ffffff 11%, #726f6f 62%);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3), 10px 10px 10px rgba(0, 0, 0, 0.3);
+            transition: 0.4s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #000;
+        }
+
+        body.dark-mode header{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+        }
+
+        body.dark-mode footer{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+        }
+
+        /* body.dark-mode{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+        } */
+
+        /* Dark mode styles */
+        body.dark-mode h3{
+            color: #34A853;
+        }
+        body.dark-mode ul li {
+            background: linear-gradient(315deg, #000000 0%, #414141 70%);
+            color: #E0E0E0;
+        }
+
+        body.dark-mode ul li:hover {
+            background: linear-gradient(315deg, #1E3A2F 0%, #facc36 70%);
+            color: #FFFFFF;
+            transform: translateX(10px);
+            box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode p {
+            color: white;
+        }
+
+        body.dark-mode h3:hover {
+            color: #ffdd57;
+            transform: translateY(-2px);
+            text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        body.dark-mode #lower_parts{
+            background: #000;
+        }
+
+        body.dark-mode .book{
+            
+            color: #E0E0E0;
+        }
+        body.dark-mode .cover{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+            color: #E0E0E0;
+        }
+
+        /* When toggled */
+        .theme-switch.active::before {
+            left: 70px;
+            background: linear-gradient(315deg, #000000 0%, #414141 70%);
+        }
+
+        header h1{
+            font-size: 2rem;
+            color: rgb(255, 199, 45);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        /* Mobile size */
+        @media (max-width: 768px) {
+            .theme-switch {
+                width: 80px;
+                height: 40px;
+            }
+
+            .theme-switch::before {
+                width: 30px;
+                height: 30px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .theme-switch.active::before {
+                left: 43px;
+            }
+
+            header h1{
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .theme-switch {
+                width: 60px;
+                height: 30px;
+            }
+
+            .theme-switch::before {
+                width: 20px;
+                height: 20px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .theme-switch.active::before {
+                left: 24px;
+            }
+
+            header h1{
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+
+    <!-- GENERAL STYLING -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: black;;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    
+        h3 {
+            font-size: clamp(22px, 3vw, 26px);
+            font-weight: bold;
+            color: #ffc802;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(178, 177, 177, 0.604);
+            word-wrap: break-word;
+        }
+    
+        ul {
+            list-style: square;
+            padding-left: 1.5em;
+            margin: 1.5rem 0;
+        }
+    
+        ul li {
+            font-size: clamp(20px, 2vw, 24px);
+            align-items: center;
+            padding: 0.75em 0.5em;
+            margin: 0.5em 0;
+            color: #2C2C2C;
+            background-color: #F1F3F4;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+    
+        ul li:hover {
+            background-color: #34A853;
+            color: #FFFFFF;
+            transform: translateX(10px);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        ul li::before {
+            content: "•";
+            color: #1A73E8;
+            font-size: 1.5em;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+    
+        /* Media Queries for Windows Scaling Issues */
+        @media screen and (max-width: 768px) {
+            h3 {
+                font-size: clamp(20px, 3vw, 24px);
+            }
+    
+            ul li {
+                font-size: clamp(18px, 2vw, 22px);
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            h3 {
+                font-size: clamp(18px, 3vw, 22px);
+            }
+    
+            ul li {
+                font-size: clamp(16px, 2vw, 20px);
+            }
+        }
+    </style>
+
+    <!-- SCROLL BAR DESIGN -->
+    <style>
+        /* addign a cursor */
+        * {
+            cursor:-moz-grabbing;
+        }
+
+        /* Styling the scroll wheel */
+        body {
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: rgb(50, 164, 58) rgb(200, 80, 192);
+            scroll-behavior: smooth;
+        }
+
+        /* Chrome, Edge, Safari */
+        ::-webkit-scrollbar{
+            cursor: pointer;
+            width: 15px; /* Thin scrollbar */
+            border-radius: 5px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            cursor:pointer;
+            background-color: rgb(66, 248, 78);
+            border-radius: 4px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgb(65, 88, 208);
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <!-- FOOTER SECTION -->
+    <style>
+
+        /* Footer */
+        footer {
+            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            text-align: center;
+            padding: 40px;
+            /* border-radius: 4px; */
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* Footer Styling */
+        .footer {
+            display: block;
+            justify-content: space-around;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+    
+        /* Email Box */
+        .email-box {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+            border-radius: 8px;
+            transition: transform 0.5s ease, background 0.7s ease;
+        }
+    
+        /* Email Link */
+        .email-link {
+            color: rgb(109, 255, 255);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+    
+        /* Hover Effects */
+        .email-box:hover {
+            transform: translateY(-6px);
+            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            box-shadow: 5px 5px 15px rgba(255, 205, 55, 0.979);
+        }
+    
+        .email-box:hover .email-link {
+            color: rgb(8, 39, 197);
+        }
+
+    </style>
+
+    <!-- CURSOR COLOR SELECTION CHANGE -->
+    <style>
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For webkit browsers (Chrome, Safari) */
+        ::-moz-selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For Firefox */
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+    </style>
+
+
+    <!-- DROP_DOWN LIST HERE -->
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Floating Button */
+        .floating-button {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background-color: #ffc802;
+            color: #2C2C2C;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-button:hover {
+            background-color: #ffdd57;
+            transform: scale(1.1);
+        }
+
+        /* Dropdown List */
+        .dropdown-list {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            background-color: #F1F3F4;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 250px;
+            width: 90%;
+            z-index: 1000;
+        }
+
+        /* Dropdown Items */
+        .dropdown-item {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2C2C2C;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #34A853;
+            color: #FFFFFF;
+            transform: translateX(-5px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-button {
+                top: 60px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .dropdown-list {
+                top: 110px;
+                right: 10px;
+                max-width: 90%;
+            }
+
+            .dropdown-item {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        /* Dark Mode Adjustments */
+        body.dark-mode .dropdown-list {
+            background-color:#262525;
+        }
+
+        body.dark-mode .dropdown-item {
+            color: #E0E0E0;
+        }
+
+        body.dark-mode .dropdown-item:hover {
+            background-color: #d2a835;
+            color: #FFFFFF;
+        }
+    </style>
+
+    <!-- SECTIONS STYLING -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .book {
+            position: relative;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1000px;
+            height: 395px;
+            background: rgb(200, 80, 192);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            transition: transform 0.5s;
+            font-size: 50%;
+            font-weight: bold;
+        }
+        
+        .cover {
+            top: 0;
+            position: absolute;
+            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.5s;
+            transform-origin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* set text size */
+            font-size: 25%;
+            font-weight: bold;
+        }
+        
+        .book:hover .cover {
+            transform: rotateY(-88deg);
+            box-shadow: 1px 1px 12px rgb(120, 38, 198);
+        }
+        
+        p {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        
+        #lower_parts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        #lower_parts > div {
+            flex: 1 1 calc(95.33% - 15px);
+            max-width: calc(95.33% - 15px);
+            min-width: 250px;
+            text-align: center;
+            padding: 35px;
+            background-color: #253038;
+            color: white;
+            font-size: 25%;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgb(255, 194, 26);
+        }
+
+        /* Tablet View */
+        @media (max-width: 1024px) {
+            #lower_parts > div {
+                flex: 1 1 calc(95.33% - 15px);
+                max-width: calc(95.33% - 15px);
+            }
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            #lower_parts {
+                flex-direction: column;
+            }
+            #lower_parts > div {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Mobile View */
+        @media (max-width: 768px) {
+            .book {
+                width: 100%;
+                height: auto;
+                min-height: 250px; /* Adjust height dynamically */
+            }
+            .cover {
+                height: 100%;
+            }
+        }
+
+        /* text manupulation */
+        .book p {
+            font-size: clamp(23px, 3vw, 36px); /* Min 16px, Max 32px */
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .cover p {
+            font-size: clamp(23px, 3vw, 36px);
+        }
+
+        .cover span {
+            font-size: clamp(20px, 2vw, 24px);
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <img src="./assets/ecology.gif" alt="Logo" height="5%" width="5%" style="border-radius: 20%;">
+        <h1>𝑵𝑮𝑶𝒔 𝑾𝒆’𝒗𝒆 𝑾𝒐𝒓𝒌𝒆𝒅 𝑾𝒊𝒕𝒉.</h1>
+        <div class="theme-switch" onclick="toggleTheme()"></div>
+    </header>
+
+
+    <!-- FLOATING BUTTON -->
+    <div class="floating-button" id="floatingButton">
+        <span>☰</span>
+    </div>
+
+    <!-- DROPDOWN LIST IN BUTTON -->
+    <div class="dropdown-list" id="dropdownList">
+        <div class="dropdown-item" data-action="Home">Home</div>
+        <div class="dropdown-item" data-action="find-ngos">Find NGO's Near You</div>
+        <div class="dropdown-item" data-action="ngo-experiences">NGO Experiences</div>
+        <div class="dropdown-item" data-action="About-Us">About Us</div>
+        <div class="dropdown-item" data-action="contact-us">Contact Us</div>
+    </div>
+
+
+    <!-- EXPERIENCES SECTION DETAILS -->
+    <div id="lower_parts">
+        
+        <!-- FIRST -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>(Negotiating with Instructor+Coordinator. Will list them soon)<br> <span>( Once I got the data. )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- SECOND -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- THIRD -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- FOURTH -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- FIFTH -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- SIXTH -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- SEVENTH -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- EIGHTH -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- NINETH -->
+        <div class="book">
+            <p>
+                <span>
+                    contact and other relevant info here.
+                </span>
+                <br>
+            </p>
+            <div class="cover">
+                <p>Project Title<br> <span>( NGO name )</span></p>
+            </div>
+            <!-- just randomly added here, bad me update ho jay ga -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.95373531531664!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2d2f2f1c1b0!2sFederation%20Square!5e0!3m2!1sen!2sus!4v1622549400000!5m2!1sen!2sus" 
+                width="40%" 
+                height="85%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+            
+        <div class="maintain">
+
+            <hr style="width: 70%; height: 4px; background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);; border: none; border-radius: 5px; margin: 20px auto;">
+
+            <div>
+                <p>&copy; <span>2025 ZAR.INC All rights reserved.</span></p>
+            </div>
+        </div>
+    
+    
+    </footer>
+
+
+    <!-- ============================== {JS BELOW} ================================== -->
+    
+    <!-- THEME TOGGLE -->
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            document.querySelector(".theme-switch").classList.toggle("active");
+        }
+    </script>
+
+    <!-- CALLING SWIPER JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- MENUE LIST //REVIEW -  -->
+    <script>
+
+        const floatingButton = document.getElementById('floatingButton');
+        const dropdownList = document.getElementById('dropdownList');
+
+        floatingButton.addEventListener('click', () => {
+            if (dropdownList.style.display === 'flex') {
+                dropdownList.style.display = 'none';
+            } else {
+                dropdownList.style.display = 'flex';
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!floatingButton.contains(event.target) && !dropdownList.contains(event.target)) {
+                dropdownList.style.display = 'none';
+            }
+        });
+
+        // Add actions to dropdown items
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const action = item.getAttribute('data-action');
+                handleAction(action);
+                dropdownList.style.display = 'none';
+            });
+        });
+
+        // Action handler function
+        function handleAction(action) {
+            switch (action) {
+                case 'Home':{
+                    window.location.href = 'index.html';
+                    break;
+                }
+                case 'ngo-experiences':{
+                    window.location.href = 'past.html';
+                    break;
+                }
+                case 'find-ngos':{
+                    window.location.href = 'home.html';
+                    break;
+                }
+                case 'About-Us':{
+                    window.location.href = 'about.html';
+                    break;
+                }
+                case 'contact-us':{
+                    window.location.href = 'contact.html';
+                    break;
+                }
+                default:{
+                    console.log('No action defined for:', action);
+                    break;
+                }
+            }
+        }
+    </script>
+
+    <!-- STOP RIGHT CLICK. -->
+    <script>
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+
+    <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+                event.preventDefault();
+            }
+            if (event.key === "F12") {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || // Ctrl+Shift+I/J/C
+                (event.ctrlKey && event.key === "U") || // Ctrl+U
+                (event.key === "F12") // F12
+            ) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    <!-- FOR SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NGO Finder",
+            "url": "https://yourwebsite.com",
+            "description": "Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://yourwebsite.com/search?q={search_term}",
+                "query-input": "required name=search_term"
+            }
+        }
+    </script>
+    
+</body>
+</html>

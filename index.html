@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Buena-Comunidad</title>
+
+    <!-- SWIPPER CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- SEO -->
+    <!-- PRIMARY META TAGS. -->
+    <title>NGO Finder - Connect with Trusted NGOs for Community Service</title>
+    <meta name="description" content="Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!">
+    <meta name="keywords" content="NGOs, community service, SDGs, NUCES students, trusted NGOs, NGO finder, social work, volunteer opportunities">
+    <meta name="author" content="Your Name or Organization">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:title" content="NGO Finder - Connect with Trusted NGOs for Community Service">
+    <meta property="og:description" content="Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!">
+    <meta property="og:image" content="https://yourwebsite.com/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com">
+    <meta property="twitter:title" content="NGO Finder - Connect with Trusted NGOs for Community Service">
+    <meta property="twitter:description" content="Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!">
+    <meta property="twitter:image" content="https://yourwebsite.com/logo.png">
+
+    <!-- CANONICAL URL -->
+    <link rel="canonical" href="https://yourwebsite.com">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="./assets/earth.png">
+
+
+    <!-- SIDE-BAR STYLING -->
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(44, 43, 43, 0.469)), url('./dis-photo/dis-9.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            background: #0E3178;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            transition: background 0.3s;
+        }
+
+        .sidebar-toggle:hover {
+            background: #34A853;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -60px;
+            top: 75px;
+            width: 60px;
+            height: 45vh;
+            background: linear-gradient(180deg, #0E3178, #34A853, #ffbf00);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1000;
+            border-radius: 20px;
+            transition: left 0.3s;
+            animation: hover-animation 2s infinite;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 15px 0;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-link .tooltip {
+            display: none;
+            position: absolute;
+            left: 100%;
+            margin-left: 10px;
+            background: rgba(255, 181, 33, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            font-size: 14px;
+            z-index: 1000;
+            animation: hover-animation 1s infinite;
+        }
+
+        .nav-link:hover .tooltip {
+            display: block;
+        }
+
+        .container1 {
+            margin-left: 80px;
+            padding: 40px;
+            width: calc(100% - 80px);
+            max-width: 850px;
+            text-align: left;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(10deg,  #ffbf00, #0E3178, #34A853);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            transform: translateY(0%);
+            animation: hover-animation 3s infinite;
+        }
+
+        @keyframes hover-animation {
+            0% {
+                transform: translateY(0%);
+            }
+            50% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+                padding-top: 15px;
+                font-size: 14px;
+                margin: 10px 0;
+            }
+            .container1 {
+                margin-left: 60px;
+                padding: 13px;
+            }
+            .footer {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 40px;
+                font-size: 12px;
+                margin: 8px 0;
+            }
+            .container1 {
+                margin-left: 50px;
+                padding: 7px;
+            }
+            .footer {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+
+
+    <!-- HEADING'S -->
+    <style>
+        .sdg-heading-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 0px;
+            z-index: 10;
+            padding: 10px;
+        }
+    
+        .sdg-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #34A853;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(199, 198, 192, 0.664);
+            margin: 0;
+            padding: 4px 8px;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+    
+        .sdg-heading:hover {
+            color: #2D9147;
+            transform: scale(1.02);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 2px 2px 8px rgba(255, 203, 61, 0.67);
+        }
+    
+        .swiper-container {
+            position: relative;
+            padding-top: 20px;
+        }
+    
+        @media (max-width: 768px) {
+            .sdg-heading {
+                font-size: 32px;
+                padding: 8px 16px;
+            }
+    
+            .sdg-heading-container {
+                top: auto;
+                left: auto;
+                margin-bottom: 10px;
+            }
+    
+            .swiper-container {
+                padding-top: 10px;
+            }
+        }
+    </style>
+
+
+    <!-- SLIDES COMPONENT STYLING -->
+    <style>
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        /* Swiper Slide Styling */
+        .swiper {
+            width: 82%;
+            height: 250px;
+            margin: auto;
+        }
+
+        .swiper-slide {
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 122, 255, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: burlywood;
+        }
+
+        .swiper-slide strong {
+            display: block;
+            line-height: 1.5;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.05);
+        }
+
+        .swiper-slide::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            /* background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0) 80%); */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: -1;
+            box-shadow: burlywood;
+            cursor: pointer;
+        }
+
+        .swiper-slide:hover::before {
+            opacity: 1;
+        }
+
+        /* Cursor glow effect */
+        .glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+            opacity: 0;
+        }
+
+        /* text manipulation */
+        .container p {
+            font-size: clamp(23px, 3vw, 36px);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .swiper p {
+            font-size: clamp(23px, 3vw, 36px);
+        }
+
+        .swiper-slide span {
+            font-size: clamp(20px, 2vw, 24px);
+        }
+
+        /* Media Queries for Mobile View */
+        @media (max-width: 768px) {
+            .container {
+                height: auto; /* Adjust height for smaller screens */
+                padding: 20px; /* Add some padding */
+            }
+
+            .swiper {
+                width: 90%; /* Increase width for better visibility */
+                height: auto; /* Adjust height for smaller screens */
+            }
+
+            .swiper-slide {
+                font-size: 16px; /* Decrease font size for smaller screens */
+                padding: 15px; /* Add padding for better spacing */
+            }
+
+            .swiper-slide strong {
+                font-size: 18px; /* Adjust strong tag font size */
+            }
+
+            .swiper-slide span {
+                font-size: 14px; /* Adjust span font size */
+            }
+
+            .container p {
+                font-size: clamp(18px, 4vw, 28px); /* Adjust paragraph font size */
+            }
+
+            .swiper p {
+                font-size: clamp(18px, 4vw, 28px); /* Adjust swiper paragraph font size */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper {
+                width: 95%; /* Further increase width for very small screens */
+            }
+
+            .swiper-slide {
+                font-size: 14px; /* Further decrease font size for very small screens */
+                padding: 10px; /* Adjust padding */
+            }
+
+            .swiper-slide strong {
+                font-size: 16px; /* Further adjust strong tag font size */
+            }
+
+            .swiper-slide span {
+                font-size: 12px; /* Further adjust span font size */
+            }
+
+            .container p {
+                font-size: clamp(16px, 5vw, 24px); /* Further adjust paragraph font size */
+            }
+
+            .swiper p {
+                font-size: clamp(16px, 5vw, 24px); /* Further adjust swiper paragraph font size */
+            }
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+    </style>
+
+
+    <!-- CURSOR COLOR SELECTION CHANGE -->
+    <style>
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For webkit browsers (Chrome, Safari) */
+        ::-moz-selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For Firefox */
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+    </style>
+
+
+    <!-- SCROLL BAR DESIGN -->
+    <style>
+        /* addign a cursor */
+        * {
+            cursor:-moz-grabbing;
+        }
+
+        /* Styling the scroll wheel */
+        body {
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: rgb(50, 164, 58) rgb(200, 80, 192);
+            scroll-behavior: smooth;
+        }
+
+        /* Chrome, Edge, Safari */
+        ::-webkit-scrollbar{
+            cursor: pointer;
+            width: 15px; /* Thin scrollbar */
+            border-radius: 5px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            cursor:pointer;
+            background-color: rgb(66, 248, 78);
+            border-radius: 4px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgb(65, 88, 208);
+            scroll-behavior: smooth;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    
+    <!-- Toggle Button -->
+    <button id="sidebar-toggle" class="sidebar-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="white"/>
+        </svg>
+    </button>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+
+        <a href="#home" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2l-12 9h3v11h6v-7h6v7h6v-11h3z" fill="white"/>
+            </svg>
+            <span class="tooltip">Home</span>
+        </a>
+
+        <a href="about.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/>
+            </svg>
+            <span class="tooltip">About</span>
+        </a>
+        
+        <a href="past.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M3 11h18v2h-18v-2zm0 4h12v2h-12v-2zm0-8h18v2h-18v-2zm14 8h4v2h-4v-2z" fill="white"/>
+            </svg>
+            <span class="tooltip">Past Experiences</span>
+        </a>
+
+        <a href="home.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10-10-4.48-10-10 4.48-10 10-10zm-1 14h2v2h-2v-2zm0-10h2v8h-2v-8z" fill="white"/>
+            </svg>
+            <span class="tooltip">SDG's</span>
+        </a>
+
+        <a href="contact.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M21 6h-18c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 4l-7 4-7-4v-2l7 4 7-4v2z" fill="white"/>
+            </svg>
+            <span class="tooltip">Contact</span>
+        </a>
+    </div>
+
+
+
+    <!-- SLIDING CONTENT [PICTURES] -->
+    <div class="container1">
+
+        <img src="https://readme-typing-svg.herokuapp.com/?lines=Welcome+to+Our+Community+👋!!;Together+We+Can+Make+a+Difference!;Fight+Against+Poverty+in+Pakistan!;Support+Education+for+All!;Promote+Healthcare+for+Everyone!;Be+the+Change+You+Want+to+See!&font=Fira%20Code&center=true&width=500&height=50" alt="Typing SVG">
+        <h1>𝙐𝙣𝙞𝙩𝙚𝙙 𝙛𝙤𝙧 𝘾𝙝𝙖𝙣𝙜𝙚❟ 𝙏𝙤𝙜𝙚𝙩𝙝𝙚𝙧 𝙒𝙚 𝙍𝙞𝙨𝙚!</h1>
+        <p>𝐁𝐞 𝐭𝐡𝐞 𝐕𝐨𝐢𝐜𝐞, 𝐁𝐞 𝐭𝐡𝐞 𝐂𝐡𝐚𝐧𝐠𝐞!</p>
+        <p><strong>Your Efforts Can Transform Lives!</strong></p>
+
+    </div>
+
+
+    <!-- IMAGES CONTAINER -->
+    <div class="container" id="first-head">
+
+        <!-- Swiper Container -->
+        <div class="swiper mySwiper">
+            
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-1.png" alt="image1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-2.png" alt="image2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-3.png" alt="image3">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-14.png" alt="image14">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-4.png" alt="image4">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-9.png" alt="image9">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-5.png" alt="image5">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-6.png" alt="image6">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-7.png" alt="image7">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-8.png" alt="image8">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-15.webp" alt="image10">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-16.jpg" alt="image11">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-12.jpg" alt="image12">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./dis-photo/dis-13.png" alt="image13">
+                </div>
+                
+            </div>
+                        
+
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Navigation Buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        𝘽𝙚 𝙖 𝙡𝙞𝙜𝙝𝙩 𝙛𝙤𝙧 𝙩𝙝𝙚 𝙨𝙪𝙛𝙛𝙚𝙧𝙞𝙣𝙜 𝙝𝙪𝙢𝙖𝙣𝙞𝙩𝙮 𝙞𝙣 𝙩𝙝𝙚 𝙬𝙤𝙧𝙡𝙙.
+    </div>
+
+
+    <!-- CALLING SWIPER JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
+
+    <!-- SWIPER ANIMATION USED JS LIBARARY HERE. NOTHING SPECIAL -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 2,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            // Breakpoints for responsive design
+            breakpoints: {
+                // When window width is >= 320px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                // When window width is >= 768px
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+            },
+        });
+    
+        document.querySelectorAll(".mySwiper .swiper-slide").forEach((slide) => {
+            let glow = document.createElement("div");
+            glow.classList.add("glow");
+            slide.appendChild(glow);
+    
+            slide.addEventListener("mousemove", (event) => {
+                let rect = slide.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let y = event.clientY - rect.top;
+                let centerX = rect.width / 2;
+                let centerY = rect.height / 2;
+    
+                let rotateX = (centerY - y) / 15;
+                let rotateY = (x - centerX) / 15;
+    
+                slide.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+                
+                // Move glow with cursor
+                glow.style.left = `${x}px`;
+                glow.style.top = `${y}px`;
+                glow.style.opacity = "1";
+                glow.style.transform = "translate(-50%, -50%) scale(2)";
+            });
+    
+            slide.addEventListener("mouseleave", () => {
+                slide.style.transition = "transform 0.3s ease-out";
+                slide.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+    
+                // Hide glow smoothly
+                glow.style.opacity = "0";
+                glow.style.transform = "translate(-50%, -50%) scale(0)";
+            });
+        });
+    </script>
+
+
+    <!-- TOGGLE SECTION -->
+    <script>
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        // HANDLE INSIDE CLICK (P(E))
+        sidebarToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevents immediate closing when clicking the toggle button
+            sidebar.classList.toggle('active');
+        });
+
+        // HANDLE OUTSIDE CLICK ( 1 - P(E))
+        document.addEventListener('click', (event) => {
+            if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- STOP RIGHT CLICK. -->
+    <script>
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+
+    <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+                event.preventDefault();
+            }
+            if (event.key === "F12") {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || // Ctrl+Shift+I/J/C
+                (event.ctrlKey && event.key === "U") || // Ctrl+U
+                (event.key === "F12") // F12
+            ) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+
+    <!-- FOR SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NGO Finder",
+            "url": "https://yourwebsite.com",
+            "description": "Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://yourwebsite.com/search?q={search_term}",
+                "query-input": "required name=search_term"
+            }
+        }
+    </script>
+
+
+</body>
+</html>

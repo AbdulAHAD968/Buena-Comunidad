@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Bunea Communidad</title>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+
+    <!-- HEADER STYLING -->
+    <style>
+        
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+            position: sticky;
+            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            padding: 20px;
+            /* border-radius: 6px; */
+            z-index: 1000; /* issy sub se uper rkho bai */
+        }
+
+        /* Day-Night Toggle Button */
+        .theme-switch {
+            width: 110px;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 30px;
+            box-shadow: inset 0 0 5px 4px rgba(255, 255, 255, 1),
+                inset 0 0 20px 1px rgba(0, 0, 0, 0.488), 10px 20px 30px rgba(0, 0, 0, 0.096),
+                inset 0 0 0 3px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.4s;
+        }
+
+        /* 3-d hover animation */
+        .theme-switch:hover {
+            -webkit-transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+            transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+        }
+
+        /* Toggle Effect */
+        .theme-switch::before {
+            content: "";
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(130deg, #757272 10%, #ffffff 11%, #726f6f 62%);
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+            box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3), 10px 10px 10px rgba(0, 0, 0, 0.3);
+            transition: 0.4s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #000;
+        }
+
+        body.dark-mode header{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+        }
+
+        body.dark-mode footer{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+        }
+
+        /* body.dark-mode{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+        } */
+
+        /* Dark mode styles */
+        body.dark-mode h3{
+            color: #34A853;
+        }
+        body.dark-mode ul li {
+            background: linear-gradient(315deg, #000000 0%, #414141 70%);
+            color: #E0E0E0;
+        }
+
+        body.dark-mode ul li:hover {
+            background: linear-gradient(315deg, #1E3A2F 0%, #facc36 70%);
+            color: #FFFFFF;
+            transform: translateX(10px);
+            box-shadow: 4px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode p {
+            color: white;
+        }
+
+        body.dark-mode h3:hover {
+            color: #ffdd57;
+            transform: translateY(-2px);
+            text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        body.dark-mode #lower_parts{
+            background: #000;
+        }
+
+        body.dark-mode .book{
+            
+            color: #E0E0E0;
+        }
+        body.dark-mode .cover{
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+            color: #E0E0E0;
+        }
+
+        /* When toggled */
+        .theme-switch.active::before {
+            left: 70px;
+            background: linear-gradient(315deg, #000000 0%, #414141 70%);
+        }
+
+        header h1{
+            font-size: 2rem;
+            color: rgb(255, 199, 45);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        /* Mobile size */
+        @media (max-width: 768px) {
+            .theme-switch {
+                width: 80px;
+                height: 40px;
+            }
+
+            .theme-switch::before {
+                width: 30px;
+                height: 30px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .theme-switch.active::before {
+                left: 43px;
+            }
+
+            header h1{
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .theme-switch {
+                width: 60px;
+                height: 30px;
+            }
+
+            .theme-switch::before {
+                width: 20px;
+                height: 20px;
+                top: 5px;
+                left: 5px;
+            }
+
+            .theme-switch.active::before {
+                left: 24px;
+            }
+
+            header h1{
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+
+    <!-- GENERAL STYLING -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: black;;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    
+        h3 {
+            font-size: clamp(22px, 3vw, 26px);
+            font-weight: bold;
+            color: #ffc802;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(178, 177, 177, 0.604);
+            word-wrap: break-word;
+        }
+    
+        ul {
+            list-style: square;
+            padding-left: 1.5em;
+            margin: 1.5rem 0;
+        }
+    
+        ul li {
+            font-size: clamp(20px, 2vw, 24px);
+            align-items: center;
+            padding: 0.75em 0.5em;
+            margin: 0.5em 0;
+            color: #2C2C2C;
+            background-color: #F1F3F4;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+    
+        ul li:hover {
+            background-color: #34A853;
+            color: #FFFFFF;
+            transform: translateX(10px);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        ul li::before {
+            content: "•";
+            color: #1A73E8;
+            font-size: 1.5em;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+    
+        /* Media Queries for Windows Scaling Issues */
+        @media screen and (max-width: 768px) {
+            h3 {
+                font-size: clamp(20px, 3vw, 24px);
+            }
+    
+            ul li {
+                font-size: clamp(18px, 2vw, 22px);
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            h3 {
+                font-size: clamp(18px, 3vw, 22px);
+            }
+    
+            ul li {
+                font-size: clamp(16px, 2vw, 20px);
+            }
+        }
+    </style>
+
+    <!-- SLIDES COMPONENT STYLING -->
+    <style>
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: black;
+        }
+
+        /* Swiper Slide Styling */
+        .swiper {
+            width: 80%;
+            height: 300px;
+            margin: auto;
+        }
+
+        .swiper-slide {
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 122, 255, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: burlywood;
+        }
+
+        .swiper-slide strong {
+            display: block;
+            line-height: 1.5;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.05);
+        }
+
+        .swiper-slide::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            /* background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0) 80%); */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: -1;
+            box-shadow: burlywood;
+            cursor: pointer;
+        }
+
+        .swiper-slide:hover::before {
+            opacity: 1;
+        }
+
+        /* Cursor glow effect */
+        .glow {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+            opacity: 0;
+        }
+
+        /* text manipulation */
+        .container p {
+            font-size: clamp(23px, 3vw, 36px);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .swiper p {
+            font-size: clamp(23px, 3vw, 36px);
+        }
+
+        .swiper-slide span {
+            font-size: clamp(20px, 2vw, 24px);
+        }
+
+        /* Media Queries for Mobile View */
+        @media (max-width: 768px) {
+            .container {
+                height: auto; /* Adjust height for smaller screens */
+                padding: 20px; /* Add some padding */
+            }
+
+            .swiper {
+                width: 90%; /* Increase width for better visibility */
+                height: auto; /* Adjust height for smaller screens */
+            }
+
+            .swiper-slide {
+                font-size: 16px; /* Decrease font size for smaller screens */
+                padding: 15px; /* Add padding for better spacing */
+            }
+
+            .swiper-slide strong {
+                font-size: 18px; /* Adjust strong tag font size */
+            }
+
+            .swiper-slide span {
+                font-size: 14px; /* Adjust span font size */
+            }
+
+            .container p {
+                font-size: clamp(18px, 4vw, 28px); /* Adjust paragraph font size */
+            }
+
+            .swiper p {
+                font-size: clamp(18px, 4vw, 28px); /* Adjust swiper paragraph font size */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper {
+                width: 95%; /* Further increase width for very small screens */
+            }
+
+            .swiper-slide {
+                font-size: 14px; /* Further decrease font size for very small screens */
+                padding: 10px; /* Adjust padding */
+            }
+
+            .swiper-slide strong {
+                font-size: 16px; /* Further adjust strong tag font size */
+            }
+
+            .swiper-slide span {
+                font-size: 12px; /* Further adjust span font size */
+            }
+
+            .container p {
+                font-size: clamp(16px, 5vw, 24px); /* Further adjust paragraph font size */
+            }
+
+            .swiper p {
+                font-size: clamp(16px, 5vw, 24px); /* Further adjust swiper paragraph font size */
+            }
+        }
+    </style>
+
+    <!-- SCROLL BAR DESIGN -->
+    <style>
+        /* addign a cursor */
+        * {
+            cursor:-moz-grabbing;
+        }
+
+        /* Styling the scroll wheel */
+        body {
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: rgb(50, 164, 58) rgb(200, 80, 192);
+            scroll-behavior: smooth;
+        }
+
+        /* Chrome, Edge, Safari */
+        ::-webkit-scrollbar{
+            cursor: pointer;
+            width: 15px; /* Thin scrollbar */
+            border-radius: 5px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            cursor:pointer;
+            background-color: rgb(66, 248, 78);
+            border-radius: 4px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgb(65, 88, 208);
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <!-- FOOTER SECTION -->
+    <style>
+
+        /* Footer */
+        footer {
+            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            text-align: center;
+            padding: 40px;
+            /* border-radius: 4px; */
+            display: flex;
+            justify-content: space-around;
+        }
+
+        /* Footer Styling */
+        .footer {
+            display: block;
+            justify-content: space-around;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+    
+        /* Email Box */
+        .email-box {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(43deg, #0A1F3E 0%, #1E3A2F 46%, #D4A017 100%);
+            border-radius: 8px;
+            transition: transform 0.5s ease, background 0.7s ease;
+        }
+    
+        /* Email Link */
+        .email-link {
+            color: rgb(109, 255, 255);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+    
+        /* Hover Effects */
+        .email-box:hover {
+            transform: translateY(-6px);
+            background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);
+            box-shadow: 5px 5px 15px rgba(255, 205, 55, 0.979);
+        }
+    
+        .email-box:hover .email-link {
+            color: rgb(8, 39, 197);
+        }
+
+    </style>
+
+
+    <!-- FALLING STARS STYLE -->
+    <style>
+        
+        .falling-star {
+            position: absolute;
+            top: -5px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.9); /* Increased glow */
+            animation: fall 3s linear forwards;
+            z-index: 1000;
+        }
+
+
+        @keyframes fall {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+    </style>
+
+
+    <!-- CURSOR COLOR SELECTION CHANGE -->
+    <style>
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For webkit browsers (Chrome, Safari) */
+        ::-moz-selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For Firefox */
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+    </style>
+
+
+    <!-- DROP_DOWN LIST HERE -->
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Floating Button */
+        .floating-button {
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background-color: #ffc802;
+            color: #2C2C2C;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-button:hover {
+            background-color: #ffdd57;
+            transform: scale(1.1);
+        }
+
+        /* Dropdown List */
+        .dropdown-list {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            background-color: #F1F3F4;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 250px;
+            width: 90%;
+            z-index: 1000;
+        }
+
+        /* Dropdown Items */
+        .dropdown-item {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2C2C2C;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #34A853;
+            color: #FFFFFF;
+            transform: translateX(-5px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-button {
+                top: 60px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .dropdown-list {
+                top: 110px;
+                right: 10px;
+                max-width: 90%;
+            }
+
+            .dropdown-item {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        /* Dark Mode Adjustments */
+        body.dark-mode .dropdown-list {
+            background-color:#343232;
+        }
+
+        body.dark-mode .dropdown-item {
+            color: #E0E0E0;
+        }
+
+        body.dark-mode .dropdown-item:hover {
+            background-color: #d2a835;
+            color: #FFFFFF;
+        }
+    </style>
+
+
+    <!-- SEARCH BUTTON STYLING -->
+    <style>
+        
+        .search-menu {
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #F1F3F4;
+            border-radius: 8px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 10px;
+            background-color:#1A73E8;
+            color: #2C2C2C;
+            border-radius: 6px;
+        }
+
+        .search-input::placeholder {
+            color: #ffffff;
+            cursor: alias;
+        }
+        
+        .search-button {
+            background-color: #34A853;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: #ffc400;
+            transform: translateY(-2px);
+        }
+
+        /* Tablet Responsiveness */ 
+        @media (max-width: 768px) {
+            .search-menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+            .search-input {
+                width: 70%;
+                text-align: center;
+                font-size: 14px;
+            }
+            .search-button {
+                width: 70%;
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .search-menu {
+                flex-direction: column;
+                gap: 6px;
+                padding: 6px;
+            }
+            .search-input {
+                width: 70%;
+                text-align: center;
+                font-size: 14px;
+                padding: 6px;
+            }
+            .search-button {
+                width: 70%;
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+
+        #results {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px solid #ffd500;
+        }
+        .ngo-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .ngo-item h3 {
+            margin: 0;
+            color: #6fff00;
+        }
+
+        #results h1{
+            margin: 0;
+            font-size: 24px;
+            color: #34A853;
+        }
+
+        #results h2{
+            margin: 0;
+            font-size: 20px;
+            color: #34A853;
+        }
+
+        #results h3{
+            margin: 0;
+            font-size: 15px;
+            color: #34A853;
+        }
+
+        #results p{
+            margin: 0;
+            font-size: 14px;
+            color: #d2a835;
+        }
+
+        .search-menu select {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 10px;
+            background-color: #1A73E8;
+            color: #FFFFFF;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .search-menu select option {
+            background-color: #1A73E8;
+            color: #FFFFFF;
+        }
+
+        /* Tablet and Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .search-menu select {
+                width: 70%;
+                margin: 5px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-menu select {
+                width: 70%;
+                margin: 5px 0;
+            }
+        }
+
+    </style>
+
+
+    <!-- HEADING'S -->
+    <style>
+        .sdg-heading-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 0px;
+            z-index: 10;
+            padding: 10px;
+        }
+    
+        .sdg-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #34A853;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(199, 198, 192, 0.664);
+            margin: 0;
+            padding: 4px 8px;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+    
+        .sdg-heading:hover {
+            color: #2D9147;
+            transform: scale(1.02);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 2px 2px 8px rgba(255, 203, 61, 0.67);
+        }
+    
+        .swiper-container {
+            position: relative;
+            padding-top: 20px;
+        }
+    
+        @media (max-width: 768px) {
+            .sdg-heading {
+                font-size: 32px;
+                padding: 8px 16px;
+            }
+    
+            .sdg-heading-container {
+                top: auto;
+                left: auto;
+                margin-bottom: 10px;
+            }
+    
+            .swiper-container {
+                padding-top: 10px;
+            }
+        }
+    </style>
+
+
+    <style>
+        #suggestions {
+            background-color: #f8f9fa;
+            border: 1px solid #ffd500;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        #suggestions strong {
+            color: #d9534f;
+        }
+
+        #suggestions code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <img src="./assets/ecology.gif" alt="Logo" height="5%" width="5%" style="border-radius: 20%;">
+        <h1><em>Buena Comunidad.</em></h1>
+        <div class="theme-switch" onclick="toggleTheme()"></div>
+    </header>
+
+    <!-- FLOATING BUTTON -->
+    <div class="floating-button" id="floatingButton">
+        <span>☰</span>
+    </div>
+
+    <div class="sdg-heading-container">
+        <h1 class="sdg-heading">𝓢𝓾𝓼𝓽𝓪𝓲𝓷𝓪𝓫𝓵𝓮 𝓓𝓮𝓿𝓮𝓵𝓸𝓹𝓶𝓮𝓷𝓽 𝓖𝓸𝓪𝓵𝓼 (𝓢𝓓𝓖)</h1>
+    </div>
+  
+
+    <!-- //FIXME -  -->
+    <!-- DROPDOWN LIST IN BUTTON -->
+    <div class="dropdown-list" id="dropdownList">
+        <div class="dropdown-item" data-action="Home">Home</div>
+        <div class="dropdown-item" data-action="find-ngos">Find NGO's Near You</div>
+        <div class="dropdown-item" data-action="ngo-experiences">NGO Experiences</div>
+        <div class="dropdown-item" data-action="About-Us">About Us</div>
+        <div class="dropdown-item" data-action="contact">Contact</div>
+    </div>
+    
+
+    <!-- SDG'S CONTAINER -->
+    <div class="container" id="first-head">
+
+        <!-- Swiper Container -->
+        <div class="swiper mySwiper">
+            
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <h3>1. No Poverty</h3>
+                    <ul>
+                        <li>Eradicate extreme poverty</li>
+                        <li>Equal access to resources</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>2. Zero Hunger</h3>
+                    <ul>
+                        <li>Improve food security</li>
+                        <li>Sustainable agriculture</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>3. Good Health & Well-being</h3>
+                    <ul>
+                        <li>Universal healthcare</li>
+                        <li>Reduce mortality rates</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>4. Quality Education</h3>
+                    <ul>
+                        <li>Free primary & secondary education</li>
+                        <li>Equal access to learning</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>5. Gender Equality</h3>
+                    <ul>
+                        <li>Women's rights & empowerment</li>
+                        <li>Equal opportunities</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>6. Clean Water & Sanitation</h3>
+                    <ul>
+                        <li>Safe drinking water</li>
+                        <li>Sanitation for all</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>7. Affordable & Clean Energy</h3>
+                    <ul>
+                        <li>Access to renewable energy</li>
+                        <li>Reduce fossil fuel reliance</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>8. Decent Work & Economic Growth</h3>
+                    <ul>
+                        <li>Employment opportunities</li>
+                        <li>Sustainable economic growth</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>9. Industry, Innovation & Infrastructure</h3>
+                    <ul>
+                        <li>Resilient infrastructure</li>
+                        <li>Foster innovation</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>10. Reduced Inequalities</h3>
+                    <ul>
+                        <li>Social & economic inclusion</li>
+                        <li>Fair policies for all</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>11. Sustainable Cities & Communities</h3>
+                    <ul>
+                        <li>Affordable housing</li>
+                        <li>Green urban spaces</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>12. Responsible Consumption,Production</h3>
+                    <ul>
+                        <li>Reduce waste</li>
+                        <li>Promote recycling</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>13. Climate Action</h3>
+                    <ul>
+                        <li>Reduce carbon footprint</li>
+                        <li>Strengthen climate resilience</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>14. Life Below Water</h3>
+                    <ul>
+                        <li>Protect marine life</li>
+                        <li>Reduce ocean pollution</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>15. Life on Land</h3>
+                    <ul>
+                        <li>Combat deforestation</li>
+                        <li>Protect biodiversity</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>16. Peace, Justice & Strong Institutions</h3>
+                    <ul>
+                        <li>Promote justice & human rights</li>
+                        <li>End corruption</li>
+                    </ul>
+                </div>
+                <div class="swiper-slide">
+                    <h3>17. Partnerships for the Goals</h3>
+                    <ul>
+                        <li>Global collaboration</li>
+                        <li>Strengthen global partnerships</li>
+                    </ul>
+                </div>
+            </div>
+                        
+
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Navigation Buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+
+    <div class="search-menu">
+        <input type="text" id="searchQuery" class="search-input" placeholder="Enter a location...">
+        <select id="distanceFilter" class="search-input">
+            <option value="3">3 km</option>
+            <option value="5">5 km</option>
+            <option value="10" selected>10 km</option>
+        </select>
+        <select id="workTypeFilter" class="search-input">
+            <option value="">All Work Types</option>
+            <option value="education">Education</option>
+            <option value="health">Health</option>
+            <option value="climate">Climate</option>
+            <option value="humanitarian">Humanitarian</option>
+        </select>
+        <button class="search-button">Search</button>
+    </div>
+    
+    <div id="suggestions">
+        <p>
+            <strong>Disclaimer!</strong> After applying a lot of filters (and I mean A LOT), while testing the functionality of this script, 
+            the results may not reflect the exact number of NGOs in the selected area or with the given work type. 
+            This is due to the limitations of the <strong>OSM-API</strong> used in this demonstration.
+            <br><br>
+            <strong>Fun Fact:</strong> You might end up seeing Marriage Halls or Banquets in the results. Why? Because some people in your city 
+            have listed them under the NGO category of <code>community_centre</code>. 🤷‍♂️
+            <br><br>
+            <strong>Another Fun Fact:</strong> We would have used the <strong>Google Maps API</strong>, but let's be honest—who's got the budget for that? 💸
+            <br><br>
+            So, while we strive for accuracy, please take the results with a pinch of humor and a dash of patience. 😊
+        </p>
+    </div>
+
+    <div id="results"></div>
+
+
+    <!-- FOOTER -->
+    <footer>
+            
+        <div class="maintain">
+
+            <hr style="width: 70%; height: 4px; background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);; border: none; border-radius: 5px; margin: 20px auto;">
+
+            <div>
+                <p>&copy; <span>2025 ZAR.INC All rights reserved.</span></p>
+            </div>
+        </div>
+    
+    
+    </footer>
+
+
+    <!-- =========================={ SCRIPTING BELOW THIS MARK. }============================== -->
+
+    <!-- //NOTE -  -->
+
+    <!-- CALLING SWIPER JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
+
+    <!-- SWIPER ANIMATION USED JS LIBARARY HERE. NOTHING SPECIAL -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 2,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            // Breakpoints for responsive design
+            breakpoints: {
+                // When window width is >= 320px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                // When window width is >= 768px
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+            },
+        });
+    
+        document.querySelectorAll(".mySwiper .swiper-slide").forEach((slide) => {
+            let glow = document.createElement("div");
+            glow.classList.add("glow");
+            slide.appendChild(glow);
+    
+            slide.addEventListener("mousemove", (event) => {
+                let rect = slide.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let y = event.clientY - rect.top;
+                let centerX = rect.width / 2;
+                let centerY = rect.height / 2;
+    
+                let rotateX = (centerY - y) / 15;
+                let rotateY = (x - centerX) / 15;
+    
+                slide.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+                
+                // Move glow with cursor
+                glow.style.left = `${x}px`;
+                glow.style.top = `${y}px`;
+                glow.style.opacity = "1";
+                glow.style.transform = "translate(-50%, -50%) scale(2)";
+            });
+    
+            slide.addEventListener("mouseleave", () => {
+                slide.style.transition = "transform 0.3s ease-out";
+                slide.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
+    
+                // Hide glow smoothly
+                glow.style.opacity = "0";
+                glow.style.transform = "translate(-50%, -50%) scale(0)";
+            });
+        });
+    </script>
+
+    <!-- THEME TOGGLE -->
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            document.querySelector(".theme-switch").classList.toggle("active");
+        }
+    </script>
+
+    
+    <!-- FALLING STAR ANIMATION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // ERROR HANDLING, IF IN CASE CONTAINER IS MISSING
+            const container = document.querySelector(".container");
+            if(!container){
+                console.error("Container not found!");
+                return;
+            }
+
+            function MAKE_STARS(){
+                const star = document.createElement("div");
+                star.classList.add("falling-star");
+
+                const size = Math.random() * 3 + 3;
+                const startPosX = Math.random() * window.innerWidth;
+                const duration = Math.random() * 3 + 6;
+
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${startPosX}px`;
+                star.style.animationDuration = `${duration}s`;
+
+                container.appendChild(star);
+                // console.log("Star created at X:", startPosX);
+
+                setTimeout(() => {
+                    star.remove();
+                }, duration * 2500);
+            }
+
+            function GEN_STARS() {
+                setInterval(MAKE_STARS, 200);
+            }
+
+            GEN_STARS();
+        });
+    </script>
+
+
+    <!-- MENUE LIST //REVIEW -  -->
+    <script>
+
+        const floatingButton = document.getElementById('floatingButton');
+        const dropdownList = document.getElementById('dropdownList');
+
+        floatingButton.addEventListener('click', () => {
+            if (dropdownList.style.display === 'flex') {
+                dropdownList.style.display = 'none';
+            } else {
+                dropdownList.style.display = 'flex';
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!floatingButton.contains(event.target) && !dropdownList.contains(event.target)) {
+                dropdownList.style.display = 'none';
+            }
+        });
+
+        // Add actions to dropdown items
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const action = item.getAttribute('data-action');
+                handleAction(action);
+                dropdownList.style.display = 'none';
+            });
+        });
+
+        // Action handler function
+        function handleAction(action) {
+            switch (action) {
+                case 'Home':{
+                    window.location.href = 'index.html';
+                    break;
+                }
+                case 'ngo-experiences':{
+                    window.location.href = 'past.html';
+                    break;
+                }
+                case 'find-ngos':{
+                    window.location.href = '#located';
+                    break;
+                }
+                case 'About-Us':{
+                    window.location.href = 'about.html';
+                    break;
+                }
+                case 'contact':{
+                    window.location.href = 'contact.html';
+                    break;
+                }
+                default:{
+                    console.log('No action defined for:', action);
+                    break;
+                }
+            }
+        }
+    </script>
+
+
+    <!-- SEARCH FUNCTIONALITY. -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchButton = document.querySelector('.search-button');
+            const searchQueryInput = document.querySelector('#searchQuery');
+            const resultsContainer = document.querySelector("#results");
+            const distanceFilter = document.querySelector('#distanceFilter');
+            const workTypeFilter = document.querySelector('#workTypeFilter');
+            let debounceTimer;
+
+            // Debounce function to limit API calls
+            const debounce = (func, delay) => {
+                return (...args) => {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => func.apply(this, args), delay);
+                };
+            };
+
+            // Autocomplete suggestions
+            searchQueryInput.addEventListener('input', debounce(async () => {
+                const query = searchQueryInput.value.trim();
+                if (query.length < 3) return;
+
+                try {
+                    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`);
+                    const data = await response.json();
+                    const suggestions = data.map(item => item.display_name);
+                    showAutocompleteSuggestions(suggestions);
+                } catch (error) {
+                    console.error("Error fetching autocomplete suggestions:", error);
+                }
+            }, 300));
+
+            const showAutocompleteSuggestions = (suggestions) => {
+                const suggestionsContainer = document.querySelector('#suggestions');
+                suggestionsContainer.innerHTML = suggestions.map(suggestion => `
+                    <div class="suggestion-item" onclick="selectSuggestion('${suggestion}')">${suggestion}</div>
+                `).join('');
+            };
+
+            window.selectSuggestion = (suggestion) => {
+                searchQueryInput.value = suggestion;
+                document.querySelector('#suggestions').innerHTML = '';
+            };
+
+            // Search for NGOs
+            searchButton.addEventListener('click', async () => {
+                const query = searchQueryInput.value.trim();
+                const distance = distanceFilter.value; // Get selected distance
+                const workType = workTypeFilter.value; // Get selected NGO work type
+
+                resultsContainer.innerHTML = "<p>🔄 Searching...</p>"; // Loading State
+
+                if (!query) {
+                    alert('Please enter a location.');
+                    return;
+                }
+
+                try {
+                    // Step 1: Convert Location to Coordinates using Nominatim
+                    const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`);
+                    const geoData = await geoResponse.json();
+
+                    if (!geoData.length) {
+                        resultsContainer.innerHTML = "<p>❌ Location not found. Try another name.</p>";
+                        return;
+                    }
+
+                    const { lat, lon } = geoData[0];
+
+                    // Step 2: Fetch Nearby NGOs using Overpass API
+                    const overpassQuery = `
+                        [out:json];
+                        (
+                            node(around:${distance * 1000},${lat},${lon})["office"="ngo"];
+                            node(around:${distance * 1000},${lat},${lon})["social_facility"="ngo"];
+                            node(around:${distance * 1000},${lat},${lon})["name"~"Edhi|Al-Khidmat|Chhipa|JDC|Akhuwat",i];
+                            node(around:${distance * 1000},${lat},${lon})["amenity"="community_centre"]["community_centre"!="wedding_hall"]["community_centre"!="banquet"];
+                        );
+                        out;
+                    `;
+                    const overpassUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`;
+
+                    const ngoResponse = await fetch(overpassUrl);
+                    const ngoData = await ngoResponse.json();
+
+                    // Step 3: Display Results
+                    resultsContainer.innerHTML = "<h2>Nearby NGOs</h2>";
+
+                    if (!ngoData.elements.length) {
+                        resultsContainer.innerHTML += `<p>❌ No NGOs found within ${distance}km${workType ? ` in the ${workType} sector` : ''}.</p>`;
+                        return;
+                    }
+
+                    // Generate List of NGOs
+                    ngoData.elements.forEach(ngo => {
+                        const name = ngo.tags.name || "Unknown NGO";
+                        const address = ngo.tags["addr:street"] || "Address not available";
+                        const workType = ngo.tags["operator:type"] || "Not specified";
+                        resultsContainer.innerHTML += `
+                            <div class="ngo-item">
+                                <h3>🏢 ${name}</h3>
+                                <p><strong>📍 Address:</strong> ${address}</p>
+                                <p><strong>🌍 Coordinates:</strong> ${ngo.lat}, ${ngo.lon}</p>
+                                <p><strong>💼 Work Type:</strong> ${workType}</p>
+                                <a href="https://www.openstreetmap.org/?mlat=${ngo.lat}&mlon=${ngo.lon}#map=15/${ngo.lat}/${ngo.lon}" target="_blank">🗺 View on Map</a>
+                            </div>
+                        `;
+                    });
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                    resultsContainer.innerHTML = "<p>❌ An error occurred while searching.</p>";
+                }
+            });
+
+            // Geolocation Integration
+            document.querySelector('.geolocation-button').addEventListener('click', () => {
+                if (!navigator.geolocation) {
+                    alert("Geolocation is not supported by your browser.");
+                    return;
+                }
+
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    const distance = distanceFilter.value; // Get selected distance
+                    const workType = workTypeFilter.value; // Get selected NGO work type
+
+                    resultsContainer.innerHTML = "<p>🔄 Searching...</p>"; // Loading State
+
+                    try {
+                        // Fetch Nearby NGOs using Overpass API
+                        const overpassQuery = `
+                            [out:json];
+                            (
+                                node(around:${distance * 1000},${lat},${lon})["office"="ngo"];
+                                node(around:${distance * 1000},${lat},${lon})["social_facility"="ngo"];
+                                node(around:${distance * 1000},${lat},${lon})["name"~"Edhi|Al-Khidmat|Chhipa|JDC|Akhuwat",i];
+                                node(around:${distance * 1000},${lat},${lon})["amenity"="community_centre"]["community_centre"!="wedding_hall"]["community_centre"!="banquet"];
+                            );
+                            out;
+                        `;
+                        const overpassUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`;
+
+                        const ngoResponse = await fetch(overpassUrl);
+                        const ngoData = await ngoResponse.json();
+
+                        // Display Results
+                        resultsContainer.innerHTML = "<h2>Nearby NGOs</h2>";
+
+                        if (!ngoData.elements.length) {
+                            resultsContainer.innerHTML += `<p>❌ No NGOs found within ${distance}km${workType ? ` in the ${workType} sector` : ''}.</p>`;
+                            return;
+                        }
+
+                        // Generate List of NGOs
+                        ngoData.elements.forEach(ngo => {
+                            const name = ngo.tags.name || "Unknown NGO";
+                            const address = ngo.tags["addr:street"] || "Address not available";
+                            const workType = ngo.tags["operator:type"] || "Not specified";
+                            resultsContainer.innerHTML += `
+                                <div class="ngo-item">
+                                    <h3>🏢 ${name}</h3>
+                                    <p><strong>📍 Address:</strong> ${address}</p>
+                                    <p><strong>🌍 Coordinates:</strong> ${ngo.lat}, ${ngo.lon}</p>
+                                    <p><strong>💼 Work Type:</strong> ${workType}</p>
+                                    <a href="https://www.openstreetmap.org/?mlat=${ngo.lat}&mlon=${ngo.lon}#map=15/${ngo.lat}/${ngo.lon}" target="_blank">🗺 View on Map</a>
+                                </div>
+                            `;
+                        });
+                    } catch (error) {
+                        console.error("Error fetching data:", error);
+                        resultsContainer.innerHTML = "<p>❌ An error occurred while searching.</p>";
+                    }
+                }, (error) => {
+                    console.error("Geolocation error:", error);
+                    alert("Unable to retrieve your location.");
+                });
+            });
+        });
+    </script>
+
+
+    <!-- STOP RIGHT CLICK. -->
+    <script>
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+
+    <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+                event.preventDefault();
+            }
+            if (event.key === "F12") {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || // Ctrl+Shift+I/J/C
+                (event.ctrlKey && event.key === "U") || // Ctrl+U
+                (event.key === "F12") // F12
+            ) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    <!-- FOR SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NGO Finder",
+            "url": "https://yourwebsite.com",
+            "description": "Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://yourwebsite.com/search?q={search_term}",
+                "query-input": "required name=search_term"
+            }
+        }
+    </script>
+    
+
+</body>
+</html>

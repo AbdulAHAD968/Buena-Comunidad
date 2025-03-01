@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunea Communidad</title>
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    
+
+    <!-- SIDE-BAR STYLING -->
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(44, 43, 43, 0.469)), url('./dis-photo/dis-9.png'); */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            background: #0E3178;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            transition: background 0.3s;
+        }
+
+        .sidebar-toggle:hover {
+            background: #34A853;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: -60px;
+            top: 75px;
+            width: 60px;
+            height: 45vh;
+            background: linear-gradient(180deg, #0E3178, #34A853, #ffbf00);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1000;
+            border-radius: 20px;
+            transition: left 0.3s;
+            animation: hover-animation 2s infinite;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 15px 0;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-link .tooltip {
+            display: none;
+            position: absolute;
+            left: 100%;
+            margin-left: 10px;
+            background: rgba(255, 181, 33, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            font-size: 14px;
+            z-index: 1000;
+            animation: hover-animation 1s infinite;
+        }
+
+        .nav-link:hover .tooltip {
+            display: block;
+        }
+
+        .container1 {
+            margin-left: 80px;
+            padding: 40px;
+            width: calc(100% - 80px);
+            max-width: 850px;
+            text-align: left;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(10deg,  #ffbf00, #0E3178, #34A853);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            transform: translateY(0%);
+            animation: hover-animation 3s infinite;
+        }
+
+        @keyframes hover-animation {
+            0% {
+                transform: translateY(0%);
+            }
+            50% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+                padding-top: 15px;
+                font-size: 14px;
+                margin: 10px 0;
+            }
+            .container1 {
+                margin-left: 60px;
+                padding: 13px;
+            }
+            .footer {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 40px;
+                font-size: 12px;
+                margin: 8px 0;
+            }
+            .container1 {
+                margin-left: 50px;
+                padding: 7px;
+            }
+            .footer {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+
+
+    <!-- MAIN BG STYLING -->
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            overflow-y: scroll;
+        }
+
+        .theIndex {
+            font-size: 18px;
+            position: fixed;
+            right: 2em;
+            height: 100%;
+            display: flex;
+            z-index: 999;
+            flex-direction: column;
+            row-gap: 1em;
+            justify-content: center;
+
+            a[data-scroll-spy] {
+                display: block;
+                margin-inline: auto;
+                width: .5em;
+                height: .5em;
+                background-color: transparent;
+                box-shadow: inset 3px 3px 5px greenyellow, inset -3px -3px 5px greenyellow;
+                border-radius: 50%;
+                transition: all .1s ease;
+            }
+
+            a.active {
+                width: 1em;
+                height: 1em;
+            }
+        }
+        .container {
+            min-height: 100vh;
+            background-position: center;
+            background-size: cover;
+            scroll-snap-align: start;
+            background-attachment: fixed;
+        }
+
+        .container-001 {
+            background-image: url('fotos/img4.avif');
+            position: relative;
+
+            .box {
+                position: absolute;
+                width: fit-content;
+                border-top: 2px solid white;
+                border-left: 2px solid white;
+
+                * {
+                padding: 0;
+                margin: 0;
+                font-family: cursive;
+                color: white;
+                }
+
+                h2 {
+                padding: 2rem;
+                font-size: 1.3rem;
+                font-family:Helvetica, sans-serif;
+
+                }
+            }
+
+            .box-top-left {
+                left: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right {
+                right: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right,
+            .box-bottom-right {
+                border-left: none;
+                border-right: 2px solid white;
+            }
+
+            .box-bottom-left {
+                left: 3rem;
+            }
+
+            .box-bottom-right {
+                right: 3rem;
+            }
+
+            .box-bottom-left,
+            .box-bottom-right {
+                bottom: 3rem;
+                border-top: none;
+                border-bottom: 2px solid white;
+            }
+        }
+
+        .container-001 p{
+            font-size: 1.5rem;
+            font-weight: bolder;
+            line-height: 1.5;
+            text-align: justify;
+            -webkit-text-fill-color: #ffffff;
+        }
+
+        .container-002 {
+            background-image: url('fotos/img4.avif');
+            position: relative;
+
+            .box {
+                position: absolute;
+                width: fit-content;
+                border-top: 2px solid white;
+                border-left: 2px solid white;
+
+                * {
+                padding: 0;
+                margin: 0;
+                font-family: cursive;
+                color: white;
+                }
+
+                h2 {
+                padding: 2rem;
+                font-size: 1.3rem;
+                font-family:Helvetica, sans-serif;
+
+                }
+            }
+
+            .box-top-left {
+                left: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right {
+                right: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right,
+            .box-bottom-right {
+                border-left: none;
+                border-right: 2px solid white;
+            }
+
+            .box-bottom-left {
+                left: 3rem;
+            }
+
+            .box-bottom-right {
+                right: 3rem;
+            }
+
+            .box-bottom-left,
+            .box-bottom-right {
+                bottom: 3rem;
+                border-top: none;
+                border-bottom: 2px solid white;
+            }
+        }
+
+        .container-002 p{
+            font-size: 1.5rem;
+            font-weight: bolder;
+            line-height: 1.5;
+            text-align: justify;
+            -webkit-text-fill-color: #ffffff;
+        }
+
+        .container-004 {
+            background-image: url('fotos/img4.avif');
+            position: relative;
+
+            .box {
+                position: absolute;
+                width: fit-content;
+                border-top: 2px solid rgb(255, 255, 255);
+                border-left: 2px solid rgb(255, 255, 255);
+
+                * {
+                    padding: 0;
+                    margin: 0;
+                    font-family: cursive;
+                    color: rgb(255, 255, 255);
+                }
+
+                h2 {
+                    padding: 2rem;
+                    font-size: 1.3rem;
+                    font-family:Helvetica, sans-serif;
+                }
+            }
+
+            .box-top-left {
+                left: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right {
+                right: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right,
+            .box-bottom-right {
+                border-left: none;
+                border-right: 2px solid rgb(255, 255, 255);
+            }
+
+            .box-bottom-left {
+                left: 3rem;
+            }
+
+            .box-bottom-right {
+                right: 3rem;
+            }
+
+            .box-bottom-left,
+            .box-bottom-right {
+                bottom: 3rem;
+                border-top: none;
+                border-bottom: 2px solid rgb(255, 255, 255);
+            }
+        }
+
+        .container-005 {
+            background-image: url('fotos/img4.avif');
+            position: relative;
+
+            .box {
+                position: absolute;
+                width: fit-content;
+                border-top: 2px solid white;
+                border-left: 2px solid white;
+
+                * {
+                    padding: 0;
+                    margin: 0;
+                    font-family: cursive;
+                    color: rgb(255, 255, 255);
+                }
+
+                h2 {
+                padding: 2rem;
+                font-size: 1.3rem;
+                font-family:Helvetica, sans-serif;
+
+                }
+            }
+
+            .box-top-left {
+                left: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right {
+                right: 3rem;
+                top: 3rem;
+            }
+
+            .box-top-right,
+            .box-bottom-right {
+                border-left: none;
+                border-right: 2px solid white;
+            }
+
+            .box-bottom-left {
+                left: 3rem;
+            }
+
+            .box-bottom-right {
+                right: 3rem;
+            }
+
+            .box-bottom-left,
+            .box-bottom-right {
+                bottom: 3rem;
+                border-top: none;
+                border-bottom: 2px solid rgb(255, 255, 255);
+            }
+        }
+
+        .container-001 {
+            background-image: url('./assets/about-2.PNG');
+        }
+
+        .container-002 {
+            background-image: url('./assets/table-bg.png');
+        }
+
+        .container-003 {
+            background-image: url('./assets/table-bg.png'); 
+        }
+
+        .container-004{
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(44, 43, 43, 0.469)), url('./assets/ripple.gif');
+            /* background-image: url('./assets/ripple.gif'); */
+            /* background-size: 50%; */
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .container-004::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(53, 54, 55, 0.541);
+            mix-blend-mode: multiply;
+        }
+
+        .container-005{
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(51, 79, 113, 0.469)), url('./assets/earth.png');
+            /* background-image: url('./assets/earth.png'); */
+            /* background-position: center; */
+            /* background-repeat: no-repeat;  */
+        }
+
+        @media (width <= 1000px) {
+            html {
+                font-size: 12px;
+            }
+            .theIndex {
+                right: 28px;
+            }
+        }
+
+        @media (width <= 600px) and (orientation: portrait){
+            .container-001 {
+                .box-bottom-left,
+                .box-top-right {
+                display: none;
+                }
+                .box-bottom-right {
+                bottom: 5rem;
+                }
+            }
+            .container {
+                background-attachment: scroll;
+            }
+            .theIndex {
+                width: fit-content;
+                right: 1.5rem;
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
+            color: #232324;
+            font-size: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            animation: hover-animation 2s infinite;
+        }
+
+        @keyframes hover-animation {
+            0% {
+                transform: translateY(0%);
+            }
+            50% {
+                transform: translateY(2px);
+            }
+            100% {
+                transform: translateY(0%);
+            }
+        }
+
+        .cta-button:hover {
+            color: black;
+            background: linear-gradient(180deg, #0E3178, #34A853, #ffbf00);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+    </style>
+
+
+    <!-- TABLE STYLING -->
+    <style>
+        /* Center the table on the screen and add spacing */
+        .container-002 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background-color: transparent; /* Transparent background */
+        }
+
+        /* Heading styling */
+        .table-heading {
+            padding-top: 50px;
+            margin: auto;
+            font-size: 28px;
+            font-weight: bolder;
+            color: #ffffff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Table styling */
+        table {
+            width: auto;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Table header styling */
+        th {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffc02c;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: bolder;
+            font-size: 16px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Table row styling */
+        tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Alternate row background for better readability */
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Table cell styling */
+        td {
+            padding: 12px 20px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: bold; 
+        }
+
+        /* Hover effect for rows */
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Slight highlight on hover */
+        }
+
+        /* Link styling */
+        a {
+            color: #4fc3f7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #03a9f4;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                width: 90%;
+                margin: 20px auto;
+            }
+
+            th, td {
+                padding: 10px 15px;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
+        }
+    </style>
+
+
+    <!-- CURSOR COLOR SELECTION CHANGE -->
+    <style>
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For webkit browsers (Chrome, Safari) */
+        ::-moz-selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+        /* For Firefox */
+        ::selection {
+            background-color: rgb(255, 204, 112);
+            color: #333;
+        }
+
+    </style>
+
+    <!-- SCROLL BAR DESIGN -->
+    <style>
+        /* addign a cursor */
+        * {
+            cursor:-moz-grabbing;
+        }
+
+        /* Styling the scroll wheel */
+        body {
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: rgb(50, 164, 58) rgb(200, 80, 192);
+            scroll-behavior: smooth;
+        }
+
+        /* Chrome, Edge, Safari */
+        ::-webkit-scrollbar{
+            cursor: pointer;
+            width: 15px; /* Thin scrollbar */
+            border-radius: 5px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            cursor:pointer;
+            background-color: rgb(66, 248, 78);
+            border-radius: 4px;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgb(65, 88, 208);
+            scroll-behavior: smooth;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- TOGGLE BUTTON -->
+    <button id="sidebar-toggle" class="sidebar-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="white"/>
+        </svg>
+    </button>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+
+        <a href="index.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2l-12 9h3v11h6v-7h6v7h6v-11h3z" fill="white"/>
+            </svg>
+            <span class="tooltip">Home</span>
+        </a>
+
+        <a href="about.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/>
+            </svg>
+            <span class="tooltip">About</span>
+        </a>
+        
+        <a href="past.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M3 11h18v2h-18v-2zm0 4h12v2h-12v-2zm0-8h18v2h-18v-2zm14 8h4v2h-4v-2z" fill="white"/>
+            </svg>
+            <span class="tooltip">Past Experiences</span>
+        </a>
+
+        <a href="home.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10-10-4.48-10-10 4.48-10 10-10zm-1 14h2v2h-2v-2zm0-10h2v8h-2v-8z" fill="white"/>
+            </svg>
+            <span class="tooltip">SDG's</span>
+        </a>
+
+        <a href="contact.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M21 6h-18c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-2 4l-7 4-7-4v-2l7 4 7-4v2z" fill="white"/>
+            </svg>
+            <span class="tooltip">Contact</span>
+        </a>
+    </div>
+
+
+    <aside class="theIndex">
+        <a href="#container-1" data-scroll-spy class="dot-0"></a>
+        <a href="#container-2" data-scroll-spy class="dot-1"></a>
+        <a href="#container-3" data-scroll-spy class="dot-2"></a>
+        <a href="#container-4" data-scroll-spy class="dot-3"></a>
+        <a href="#container-5" data-scroll-spy class="dot-4"></a>
+    </aside>
+    
+    <!-- About Page -->
+    <section id="about" data-scroll-spy class="container-001 container">
+        <div class="box-top-left box">
+            <h2>We aim to bridge the gap between people and NGOs, <br> making it easier to find and support social causes.</h2>
+        </div>
+        <div class="box-bottom-left box">
+            <h2>
+                <a href="contact.html" class="cta-button">Contact Us</a>
+            </h2>
+        </div>
+        <div class="box-top-right box">
+            <h2>Currently operating in Islamabad - Rawalpindi.</h2>
+        </div>
+        <div class="box-bottom-right box">
+            <h2>
+                <a href="past.html" class="cta-button">Be a Part of Change</a>
+            </h2>
+        </div>
+
+    </section>
+
+    <!-- 2nd PAGE TABLE -->
+    <section data-scroll-spy class="container-002 container">
+        <h2 class="table-heading">Some Notable NGOs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Category</th>
+                    <th>Maps Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td>Khubaib Foundation</td>
+                    <td>I-10/3, Islamabad, Pakistan</td>
+                    <td>All</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/uG7YB5uuJLS85i3P7" target="_blank">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>Center for the Empowering Society (CES)</td>
+                    <td>E-11/3, Islamabad, Pakistan</td>
+                    <td>Education</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/84hC89HbsmyH4nuT9" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td>Friends Foundation</td>
+                    <td>I-10/4, Islamabad, Pakistan</td>
+                    <td>Health</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/qQFytbrDQiFG5SvX6" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td>The NGO World</td>
+                    <td>Keeps Changing</td>
+                    <td>N/A</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/MAwP5nPvWxvLgP3J6" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td>Oxfam in Pakistan</td>
+                    <td>F-10/3, Islamabad, Pakistan</td>
+                    <td>Humanitarian</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/WCaC5CCKbiYusTFP7" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6.</td>
+                    <td>Shifa Foundation</td>
+                    <td>I-9/2, Islamabad, Pakistan</td>
+                    <td>Health</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/YpDgBPDyBNDu8yd9A" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7.</td>
+                    <td>Helping Hand (HHRD)</td>
+                    <td>G-10/4, Islamabad, Pakistan</td>
+                    <td>Humanitarian</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/6H5vQmrxi6tWanYE7" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8.</td>
+                    <td>Care International Pakistan</td>
+                    <td>I-8/2, Islamabad, Pakistan</td>
+                    <td>ALL</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/G6VDaFzHXH1fa5Lg9" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9.</td>
+                    <td>Qatar Charity</td>
+                    <td>G-11/3, Islamabad, Pakistan</td>
+                    <td>All</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/PEZamNQHt9M8iW1s6" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10.</td>
+                    <td>AlKhidmat Foundation</td>
+                    <td>G-7/2, Islamabad, Pakistan</td>
+                    <td>All</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/F58j3jXFnTYzEbot7" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 3rd PAGE TABLE -->
+    <section data-scroll-spy class="container-003 container">
+        <h2 class="table-heading">More Notable NGOs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Category</th>
+                    <th>Maps Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>11.</td>
+                    <td>Society for Human Rights and Prisoners Aid (SHARP)</td>
+                    <td>I-11/3, Islamabad, Pakistan</td>
+                    <td>Human Rights</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/Xua2FpV8kdKyvqVm7" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12.</td>
+                    <td>READ Foundation</td>
+                    <td>Chak Shahzad, Islamabad, Pakistan</td>
+                    <td>Education</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/4gF91xMGgVdDZTdC8" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13.</td>
+                    <td>Pakistan Centre for Philanthropy (PCP)</td>
+                    <td>G-9/1, Islamabad, Pakistan</td>
+                    <td>Philanthropy</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/ky3GEqocqnjgVToHA" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14.</td>
+                    <td>Sustainable Development Policy Institute (SDPI)</td>
+                    <td>Blue Area, Islamabad, Pakistan</td>
+                    <td>Development</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/BrMh7FjXQY3HHMj36" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15.</td>
+                    <td>Edhi Home</td>
+                    <td>H-8, Islamabad, Pakistan</td>
+                    <td>General Welfare</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/KWNA5dA8rmcGdkB88" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>16.</td>
+                    <td>UNESCO Islamabad Office</td>
+                    <td>G-5/1, Islamabad, Pakistan</td>
+                    <td>Education & Culture</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/qghapXdmFk643EzUA" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>17.</td>
+                    <td>United Nations Development Programme (UNDP)</td>
+                    <td>G-5, Islamabad, Pakistan</td>
+                    <td>Development</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/dJJfENZ1Xgyaz1TM7" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>18.</td>
+                    <td>International Labour Organization (ILO) Pakistan</td>
+                    <td>G-5/2, Islamabad, Pakistan</td>
+                    <td>Labor Rights</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/aWS9qGw5dcaZgX2e9" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>19.</td>
+                    <td>World Food Programme (WFP) Pakistan</td>
+                    <td>G-5, Islamabad, Pakistan</td>
+                    <td>Food Security</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/bXbxQyENWwCgN5WSA" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20.</td>
+                    <td>UNICEF Pakistan</td>
+                    <td>G-5, Islamabad, Pakistan</td>
+                    <td>Child Welfare</td>
+                    <td>
+                        <a href="https://maps.app.goo.gl/eSawAnzAhDLnkxdJ9" target="_blank" rel="noopener noreferrer">Maps Link</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- MISSION STATEMENT -->
+    <section data-scroll-spy class="container-004 container">
+        
+        <div class="box-top-left box">
+            <h2>Our Goal is to Create a Ripple Effect.</h2>
+        </div>
+        
+        <div class="box-bottom-right box">
+            <h2>
+                <a href="past.html" class="cta-button">Be a Part of Change</a>
+            </h2>
+        </div>
+
+    </section>
+
+    <!--  CALL TO ACTION -->
+    <section data-scroll-spy class="container-005 container">
+        
+        <div class="box-top-left box">
+            <h2>Find a cause that matters to you and take action now!</h2>
+        </div>
+        
+        <div class="box-bottom-right box">
+            <h2>
+                Every small effort counts.
+            </h2>
+        </div>
+
+    </section>
+
+
+    <!-- ========================= [JS BELOW] ========================= -->
+
+
+    <!-- SMOOTH SCROLLING -->
+    <script>
+        const d = document;
+
+        d.addEventListener("DOMContentLoaded", e => {
+            scrollSpy();
+        });
+
+        function scrollSpy() {
+            let $imgs = d.querySelectorAll("section[data-scroll-spy]");
+
+            let observador = new IntersectionObserver(cb, { threshold: 0.5 });
+
+            function cb(entries) {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute("id");
+
+                    if (entry.isIntersecting) {
+                        d.querySelector(`a[data-scroll-spy][href='#${id}']`).classList.add("active");
+                    } else {
+                        d.querySelector(`a[data-scroll-spy][href='#${id}']`).classList.remove("active");
+                    }
+                });
+            }
+
+            $imgs.forEach(img => observador.observe(img));
+        }
+    </script>
+
+    <!-- TOGGLE SECTION -->
+    <script>
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        // HANDLE INSIDE CLICK (P(E))
+        sidebarToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevents immediate closing when clicking the toggle button
+            sidebar.classList.toggle('active');
+        });
+
+        // HANDLE OUTSIDE CLICK ( 1 - P(E))
+        document.addEventListener('click', (event) => {
+            if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+
+
+    <!-- STOP RIGHT CLICK. -->
+    <script>
+        document.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+    </script>
+
+    <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "s" || event.key === "i" || event.key === "j")) {
+                event.preventDefault();
+            }
+            if (event.key === "F12") {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C")) || // Ctrl+Shift+I/J/C
+                (event.ctrlKey && event.key === "U") || // Ctrl+U
+                (event.key === "F12") // F12
+            ) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    <!-- FOR SEO -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NGO Finder",
+            "url": "https://yourwebsite.com",
+            "description": "Find trusted NGOs for your community service coursework. Explore NGOs aligned with SDGs, current issues, and impactful projects by NUCES students. Start making a difference today!",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://yourwebsite.com/search?q={search_term}",
+                "query-input": "required name=search_term"
+            }
+        }
+    </script>
+
+
+</body>
+</html>
