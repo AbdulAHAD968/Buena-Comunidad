@@ -35,17 +35,6 @@
 
 ---
 
-## 📂 Project Structure
-Buena-Comunidad/
-├── index.html # Main HTML file
-├── styles.css # CSS styles
-├── script.js # JavaScript functionality
-├── README.md # Project documentation
-├── LICENSE # License file
-└── assets/ # Folder for images, icons, etc.
-
----
-
 ## 🧑‍💻 Contributing
 
 We welcome contributions! Here’s how you can help:
