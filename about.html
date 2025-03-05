@@ -529,12 +529,9 @@
 
         .container-005{
             background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(51, 79, 113, 0.469)), url('./assets/earth.png');
-            /* background-image: url('./assets/earth.png'); */
-            /* background-position: center; */
-            /* background-repeat: no-repeat;  */
         }
 
-        @media (width <= 1000px) {
+        @media (max-width: 1000px) {
             html {
                 font-size: 12px;
             }
@@ -543,22 +540,22 @@
             }
         }
 
-        @media (width <= 600px) and (orientation: portrait){
+        @media (max-width: 600px) and (orientation: portrait) {
             .container-001 {
                 .box-bottom-left,
                 .box-top-right {
-                display: none;
+                    display: none;
                 }
                 .box-bottom-right {
-                bottom: 5rem;
+                    bottom: 3rem;
                 }
             }
             .container {
-                background-attachment: scroll;
+                background-attachment: scroll !important;
             }
             .theIndex {
-                width: fit-content;
-                right: 1.5rem;
+                width: auto; /* zyada flexible */
+                right: 1rem;
             }
         }
 
@@ -599,17 +596,15 @@
 
     <!-- TABLE STYLING -->
     <style>
-        /* Center the table on the screen and add spacing */
         .container-002 {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 40px 20px;
-            background-color: transparent; /* Transparent background */
+            background-color: transparent;
         }
-
-        /* Heading styling */
+    
         .table-heading {
             padding-top: 50px;
             margin: auto;
@@ -621,10 +616,17 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
-
+    
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+    
         /* Table styling */
         table {
             width: auto;
+            min-width: 300px;
             margin: 0 auto;
             border-collapse: collapse;
             background-color: rgba(0, 0, 0, 0.6);
@@ -634,8 +636,7 @@
             border-radius: 10px;
             overflow: hidden;
         }
-
-        /* Table header styling */
+    
         th {
             background-color: rgba(255, 255, 255, 0.1);
             color: #ffc02c;
@@ -645,62 +646,78 @@
             font-size: 16px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         }
-
-        /* Table row styling */
+    
         tr {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: background-color 0.3s ease;
         }
-
-        /* Alternate row background for better readability */
+    
         tr:nth-child(even) {
             background-color: rgba(255, 255, 255, 0.05);
         }
-
-        /* Table cell styling */
+    
         td {
             padding: 12px 20px;
             text-align: left;
             font-size: 14px;
             font-weight: bold; 
         }
-
-        /* Hover effect for rows */
+    
         tr:hover {
-            background-color: rgba(255, 255, 255, 0.1); /* Slight highlight on hover */
+            background-color: rgba(255, 255, 255, 0.1);
         }
-
-        /* Link styling */
+    
         a {
             color: #4fc3f7;
             text-decoration: none;
             transition: color 0.3s ease;
             font-weight: bold;
         }
-
+    
         a:hover {
             color: #03a9f4;
         }
-
+    
         @media (max-width: 768px) {
-            table {
+            .table-heading {
+                font-size: 18px;
+                padding-top: 1rem;
+            }
+
+            .table-container {
                 width: 90%;
-                margin: 20px auto;
+            }
+
+            table {
+                width: 100%;
+                min-width: 250px;
+                font-size: 12px;
             }
 
             th, td {
-                padding: 10px 15px;
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .table-heading {
+                font-size: 14px;
             }
 
-            td:before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                width: 45%;
-                padding-right: 10px;
-                white-space: nowrap;
-                text-align: left;
-                font-weight: bold;
+            .table-container {
+                width: 100%;
+            }
+
+            table {
+                width: 100%;
+                min-width: 200px;
+                font-size: 10px;
+            }
+
+            th, td {
+                padding: 5px 8px;
+                font-size: 10px;
             }
         }
     </style>
@@ -821,7 +838,7 @@
         <a href="#container-5" data-scroll-spy class="dot-4"></a>
     </aside>
     
-    <!-- About Page -->
+    <!-- FIRST PAGE -->
     <section id="about" data-scroll-spy class="container-001 container">
         <div class="box-top-left box">
             <h2>We aim to bridge the gap between people and NGOs, <br> making it easier to find and support social causes.</h2>
@@ -832,11 +849,11 @@
             </h2>
         </div>
         <div class="box-top-right box">
-            <h2>Currently operating in Islamabad - Rawalpindi.</h2>
+            <h2>Currently Focusing on Islamabad & Rawalpindi.</h2>
         </div>
         <div class="box-bottom-right box">
             <h2>
-                <a href="past.html" class="cta-button">Be a Part of Change</a>
+                <a href="past.html" class="cta-button">User Stories</a>
             </h2>
         </div>
 

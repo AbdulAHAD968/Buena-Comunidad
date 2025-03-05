@@ -35,7 +35,7 @@
 
     <!-- TOGGLE BUTTON STYLING -->
     <style>
-
+        /* General Fix: Prevent horizontal scrolling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -48,10 +48,10 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden; /* Fix scrolling issue */
         }
 
-        /* Toggle Button */
+        /* Toggle Button (Back to Life) */
         .sidebar-toggle {
             position: fixed;
             left: 10px;
@@ -65,18 +65,19 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 1001;
-            transition: background 0.3s;
+            z-index: 1001; /* Higher than sidebar */
+            transition: background 0.3s, transform 0.2s;
         }
 
         .sidebar-toggle:hover {
             background: #34A853;
+            transform: scale(1.1);
         }
 
-        /* Sidebar */
+        /* Sidebar (Now Fixed) */
         .sidebar {
             position: fixed;
-            left: -60px;
+            left: -70px; /* Sidebar is initially hidden */
             top: 75px;
             width: 60px;
             height: 37vh;
@@ -87,23 +88,26 @@
             padding-top: 20px;
             z-index: 1000;
             border-radius: 20px;
-            transition: left 0.3s;
+            transition: left 0.3s ease-in-out;
             animation: hover-animation 2s infinite;
         }
 
+        /* When Sidebar Opens */
         .sidebar.active {
             left: 0;
         }
 
+        /* Sidebar Navigation */
         .nav-link {
             color: white;
             text-decoration: none;
             font-size: 16px;
-            margin: 15px 0;
+            margin: 10px 0;
             transition: 0.3s;
             display: flex;
             align-items: center;
             position: relative;
+            padding: 5px;
         }
 
         .nav-link svg {
@@ -111,6 +115,7 @@
             height: 24px;
         }
 
+        /* Tooltip Fix */
         .nav-link .tooltip {
             display: none;
             position: absolute;
@@ -130,6 +135,7 @@
             display: block;
         }
 
+        /* Main Content */
         .container {
             margin-left: 80px;
             padding: 40px;
@@ -138,6 +144,7 @@
             text-align: left;
         }
 
+        /* Footer Card */
         .contact_card {
             position: fixed;
             bottom: 0;
@@ -146,26 +153,13 @@
             background: linear-gradient(10deg,  #ffbf00, #0E3178, #34A853);
             color: white;
             text-align: center;
-            padding: 15px 0;
-            font-size: 18px;
+            padding: 1rem 0;
+            font-size: 1.125rem;
             font-weight: bold;
-            z-index: 1000;
             cursor: pointer;
             transition: background-color 0.3s;
             transform: translateY(0%);
             animation: hover-animation 3s infinite;
-        }
-
-        @keyframes hover-animation {
-            0% {
-                transform: translateY(0%);
-            }
-            50% {
-                transform: translateY(2px);
-            }
-            100% {
-                transform: translateY(0%);
-            }
         }
 
         /* Responsive Design */
@@ -173,30 +167,32 @@
             .sidebar {
                 width: 50px;
                 padding-top: 15px;
-                font-size: 14px;
-                margin: 10px 0;
             }
-            .container1 {
+
+            .container {
                 margin-left: 60px;
-                padding: 13px;
+                padding: 1rem;
             }
+
             .contact_card {
-                font-size: 16px;
+                font-size: 1rem;
+                padding: 0.8rem 0;
             }
         }
 
         @media (max-width: 480px) {
             .sidebar {
                 width: 40px;
-                font-size: 12px;
-                margin: 8px 0;
             }
-            .container1 {
+
+            .container {
                 margin-left: 50px;
-                padding: 7px;
+                padding: 0.8rem;
             }
+
             .contact_card {
-                font-size: 14px;
+                font-size: 0.875rem;
+                padding: 0.6rem 0;
             }
         }
 
@@ -212,6 +208,11 @@
             box-sizing: border-box;
         }
 
+        /* Root Font Size for Scaling */
+        html {
+            font-size: 16px;
+        }
+
         /* Body Styling */
         body {
             display: flex;
@@ -220,38 +221,38 @@
             min-height: 100vh;
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
-            padding: 10px;
+            padding: 0.625rem;
         }
 
         /* Container Styling */
         .container {
             width: 90vw;
-            max-width: 1200px; /* Increased size for larger screens */
+            max-width: 75rem; /* 1200px */
             height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
             background: transparent;
-            padding: 20px;
+            padding: 1.25rem;
+            margin: 0 auto;
         }
 
         /* Contact Card Styling */
         .contact_card {
             position: relative;
             width: 90%;
-            height: auto;
-            max-width: 1000px;
+            max-width: 62.5rem; /* 1000px */
             background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            border-radius: 0.9375rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
             display: flex;
-            margin: 27px;
+            margin: 1.6875rem;
             flex-direction: column;
         }
 
         .contact_card:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
         }
 
         /* Left Section Styling */
@@ -259,51 +260,51 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #ddd;
+            padding-bottom: 1.25rem;
+            border-bottom: 0.0625rem solid #ddd;
             align-items: stretch;
         }
 
         .left_left {
             width: 50%;
-            padding-right: 20px;
+            padding-right: 1.25rem;
         }
 
         .left_left h1 img {
-            width: 120px;
+            width: 7.5rem;
             height: auto;
         }
 
         .left_left p {
-            margin-top: 15px;
-            font-size: 18px;
-            color: #e9dfdf;
+            margin-top: 0.9375rem;
+            font-size: 1.125rem;
+            color: #ffffff;
             line-height: 1.6;
         }
 
         .left_right {
             width: 50%;
-            padding-left: 20px;
-            border-left: 3px solid #ddd;
+            padding-left: 1.25rem;
+            border-left: 0.1875rem solid #ddd;
         }
 
         .heading h1 {
-            font-size: 28px;
+            font-size: 1.75rem;
             color: #ffbf00;
-            margin-bottom: 15px;
+            margin-bottom: 0.9375rem;
         }
 
         .contact-divider {
             border: 0;
-            height: 3px;
+            height: 0.1875rem;
             background: #ddd;
-            margin: 15px 0;
+            margin: 0.9375rem 0;
         }
 
         .contacts {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 0.9375rem;
         }
 
         .contact-item {
@@ -312,72 +313,44 @@
             text-decoration: none;
             color: #1aaaf1;
             transition: all 0.3s ease-in-out;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 0.3125rem 0.625rem;
+            border-radius: 0.3125rem;
         }
 
         .contact-item:hover {
             color: #fff;
             background: #0E3178;
-            box-shadow: 0px 8px 16px rgba(255, 174, 43, 0.714);
-            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(255, 174, 43, 0.714);
+            transform: translateY(-0.125rem);
         }
 
         .contact-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.625rem;
         }
 
         /* Bottom Section Styling */
         .bottom {
-            padding-top: 20px;
+            padding-top: 1.25rem;
             text-align: center;
         }
 
-        /* Media Queries for Responsiveness */
-
-        /* Mobile Screen (max-width: 400px) */
-        @media screen and (max-width: 400px) {
-            .container {
-                width: 100vw;
-                padding: 10px;
-            }
-
-            .contact_card {
-                padding: 20px;
-            }
-
-            .left {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .left_left, .left_right {
-                width: 100%;
-                padding: 0;
-                border-left: none;
-            }
-
-            .heading h1 {
-                font-size: 22px;
-            }
-        }
-
-        /* Tablet Screen (max-width: 800px) */
-        @media screen and (max-width: 800px) {
+        @media screen and (max-width: 25rem) { /* 400px */
             .container {
                 width: 95vw;
-                padding: 15px;
+                max-width: 100%;
+                padding: 1rem;
+                margin-bottom: 1rem;
             }
 
             .contact_card {
-                padding: 30px;
+                padding: 1.25rem;
             }
 
             .left {
                 flex-direction: column;
-                gap: 20px;
+                gap: 1.25rem;
             }
 
             .left_left, .left_right {
@@ -387,23 +360,53 @@
             }
 
             .heading h1 {
-                font-size: 25px;
+                font-size: 1.375rem;
+            }
+
+            .left_left p {
+                font-size: 1rem;
+                line-height: 1.4;
             }
         }
 
-        /* Larger Screens */
-        @media screen and (min-width: 1200px) {
+        @media screen and (max-width: 50rem) { /* 800px */
             .container {
-                max-width: 1400px; /* Increased size */
+                width: 95vw;
+                padding: 0.9375rem;
             }
 
             .contact_card {
-                max-width: 1100px;
-                padding: 50px;
+                padding: 1.875rem;
+            }
+
+            .left {
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+
+            .left_left, .left_right {
+                width: 100%;
+                padding: 0;
+                border-left: none;
             }
 
             .heading h1 {
-                font-size: 30px;
+                font-size: 1.5625rem;
+            }
+        }
+
+        @media screen and (min-width: 75rem) { /* 1200px */
+            .container {
+                max-width: 87.5rem;
+            }
+
+            .contact_card {
+                max-width: 68.75rem;
+                padding: 3.125rem;
+            }
+
+            .heading h1 {
+                font-size: 1.875rem;
             }
         }
 
@@ -412,17 +415,21 @@
 
     <!-- FOOTER SECTION -->
     <style>
+        :root {
+            --footer-padding: 1rem;  /* Default padding */
+            --footer-font-size: 1.2rem;  /* Default font size */
+        }
 
         .footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(10deg,  #ffbf00, #0E3178, #34A853);
+            background: linear-gradient(10deg, #ffbf00, #0E3178, #34A853);
             color: white;
             text-align: center;
-            padding: 15px 0;
-            font-size: 18px;
+            padding: var(--footer-padding);
+            font-size: var(--footer-font-size);
             font-weight: bold;
             z-index: 1000;
             cursor: pointer;
@@ -432,17 +439,34 @@
         }
 
         @keyframes hover-animation {
-            0% {
-                transform: translateY(0%);
-            }
-            50% {
-                transform: translateY(2px);
-            }
-            100% {
-                transform: translateY(0%);
+            0% { transform: translateY(0%); }
+            50% { transform: translateY(2px); }
+            100% { transform: translateY(0%); }
+        }
+
+        /* Mobile Screens (max-width: 600px) */
+        @media (max-width: 37.5rem) {
+            :root {
+                --footer-padding: 0.8rem;
+                --footer-font-size: 1rem;
             }
         }
 
+        /* Tablet Screens (601px - 1024px) */
+        @media (min-width: 37.5rem) and (max-width: 64rem) {
+            :root {
+                --footer-padding: 1rem;
+                --footer-font-size: 1.1rem;
+            }
+        }
+
+        /* PC Screens (1025px and above) */
+        @media (min-width: 64rem) {
+            :root {
+                --footer-padding: 1.2rem;
+                --footer-font-size: 1.3rem;
+            }
+        }
     </style>
 
 
@@ -619,14 +643,11 @@
         </div>
     </div>
 
-
     <!-- Footer -->
     <div class="footer">
         𝘽𝙚 𝙩𝙝𝙚 𝙘𝙝𝙖𝙣𝙜𝙚 𝙮𝙤𝙪 𝙬𝙖𝙣𝙩 𝙩𝙤 𝙨𝙚𝙚 𝙞𝙣 𝙩𝙝𝙚 𝙬𝙤𝙧𝙡𝙙.
         <hr style="width: 70%; height: 4px; background: linear-gradient(43deg, rgb(14, 49, 120) 0%, #34A853 46%, #ffbf00 100%);; border: none; border-radius: 5px; margin: 10px auto;">
     </div>
-
-
 
     <!-- TOGGLE SECTION -->
     <script>
@@ -646,7 +667,6 @@
             }
         });
     </script>
-
 
     <!-- FALLING STAR ANIMATION -->
     <script>
@@ -688,14 +708,12 @@
         });
     </script>
 
-
     <!-- STOP RIGHT CLICK. -->
     <script>
         document.addEventListener("contextmenu", function(event) {
             event.preventDefault();
         });
     </script>
-
 
     <!-- DISABLE ALL THE KEYBOARD SHORTCUTS [FOR NON TECHNICAL PEOPLE, TECHNICAL PEOPLE DO HAVE ACCESS USING ADVANCE TOOLS] -->
     <script>
