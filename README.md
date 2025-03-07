@@ -52,7 +52,7 @@ We welcome contributions! Here’s how you can help:
 2. **NUCES Students** for their inspiring community service projects.
 3. **You** for using Buena Comunidad to make a difference!
 4. FlatiCon for .gif files.
-5. Dominic for secion designing.
+5. Dominic for section designing.
 6. Universe IO for css styling.
 
 ---
@@ -66,10 +66,3 @@ You can contact me via email at: [ahad06074@gmail.com](mailto:ahad06074@gmail.co
 
 Errors and omissions are accepted!
 
----
-
-## 🤖 Credits
-
-Built with ❤️ by a passionate team of developers (A). 
-The one and only **Abdul Ahad**.
-Feel free to **fork**, **contribute**, or **share your thoughts**! 🌟
